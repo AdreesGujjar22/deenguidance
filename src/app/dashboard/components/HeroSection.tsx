@@ -58,7 +58,7 @@ const HeroSection: React.FC = () => {
             lineHeight: { xs: "1.2", md: "1.5" },
           }}
         >
-          PRAY TO ALLAH AND BE CONFIDENT OF A RESPONSE.
+          Call upon Allah with faith and trust in His response.
         </Typography>
 
         {/* Subheadline */}
@@ -71,7 +71,7 @@ const HeroSection: React.FC = () => {
             lineHeight: { xs: "1.5", md: "2" },
           }}
         >
-          It is a community center for all. The Center is committed to preserving an Islamic.
+            This is Deen Guidance Instiute to provide to invite for Islam
         </Typography>
 
         {/* Call to Action */}
