@@ -1,0 +1,122 @@
+/* Background */
+
+position: absolute;
+width: 231.97px;
+height: 56px;
+left: 414px;
+top: calc(50% - 56px/2 - 282.5px);
+
+background: #DB9E30;
+border-radius: 800px;
+
+
+/* Background */
+
+position: absolute;
+left: 3.02%;
+right: -3.02%;
+top: 12.5%;
+bottom: -12.5%;
+
+background: #DB9E30;
+opacity: 0.5;
+border-radius: 800px;
+
+
+/* Button */
+
+position: absolute;
+width: 231.97px;
+height: 56px;
+left: 0px;
+top: calc(50% - 56px/2);
+
+border-radius: 6px;
+
+
+/* Namaz Timings */
+
+position: absolute;
+width: 121.2px;
+height: 17px;
+left: 60px;
+top: calc(50% - 17px/2 - 0.5px);
+
+font-family: 'Epilogue';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 24px;
+/* or 150% */
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* Icon */
+
+position: absolute;
+width: 9.15px;
+height: 24px;
+left: 200.81px;
+top: 40px;
+
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 61.93%;
+bottom: 16.6%;
+
+background: #FFFFFF;
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* SVG */
+
+position: absolute;
+width: 30px;
+height: 30px;
+left: 20px;
+top: 13px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 13.89%;
+right: 13.88%;
+top: 13.89%;
+bottom: 13.89%;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 2.5%;
+right: 2.5%;
+top: 2.5%;
+bottom: 2.5%;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 46.96%;
+right: 33.74%;
+top: 25.54%;
+bottom: 33.74%;
+
+background: #FFFFFF;

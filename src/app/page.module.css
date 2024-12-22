@@ -1,83 +1,9 @@
+@font-face {
+    font-family: 'CinzelDecorative';
+    src: url('../../public/fonts/CinzelDecorative-Regular.ttf') format('truetype');
+  }
 
-.container {
-    background-color: #1a7638;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2.5rem 1rem;
-    text-align: center;
-  }
-  
-  .title {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
-  }
-  
-  .subtitle {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-  }
-  
-  .card {
-    background-color: white;
-    color: #1a7638;
-    padding: 1.5rem;
-    border-radius: 0.75rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 1.5rem;
-    width: 100%;
-    max-width: 500px;
-  }
-  
-  .list {
-    list-style: none;
-    padding: 0;
+body{
     margin: 0;
-  }
-  
-  .listItem {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-  
-  .icon {
-    display: inline-block;
-    width: 1.5rem;
-    height: 1.5rem;
-    background-color: #facc15;
-    border-radius: 50%;
-    margin-right: 0.75rem;
-  }
-  
-  .button {
-    background-color: #facc15;
-    color: white;
-    padding: 0.5rem 1.5rem;
-    border-radius: 0.5rem;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .button:hover {
-    background-color: #eab308;
-  }
-  
-  .footer {
-    margin-top: 2rem;
-    font-size: 0.875rem;
-  }
-  
-  .link {
-    color: #facc15;
-    font-weight: bold;
-  }
-  
-  
-  
+    padding : 0;
+}

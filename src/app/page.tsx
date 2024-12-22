@@ -1,34 +1,17 @@
 "use client"
-import React from 'react';
-import styles from './page.module.css';
+import React,{useEffect} from 'react';
+import './page.module.css';
+import { useRouter } from 'next/navigation';
 
-const HomePageComponent = () => {
+const HomePageComponent:React.FC = () => {
+  const router = useRouter();
+
+  useEffect(()=>{
+    router.push('/dashboard');
+  },[])
+
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Online Quran</h1>
-      <h2 className={styles.subtitle}>Classes For Kids</h2>
-      <div className={styles.card}>
-        <ul className={styles.list}>
-          <li className={styles.listItem}>
-            <span className={styles.icon}></span>
-            Reading The Quran With Tajweed
-          </li>
-          <li className={styles.listItem}>
-            <span className={styles.icon}></span>
-            Tafseer The Quran
-          </li>
-          <li className={styles.listItem}>
-            <span className={styles.icon}></span>
-            Easy To Learn From Home
-          </li>
-        </ul>
-      </div>
-      <button className={styles.button}>Register Now</button>
-      <div className={styles.footer}>
-        <p>More Information</p>
-        <p className={styles.link}>www.QuranEasy.com</p>
-      </div>
-    </div>
+    <h1>Loading ... </h1>
   );
 };
 
