@@ -1,4 +1,3 @@
-"use client";
 
 import React from "react";
 import { Box, Typography, Button, Grid, IconButton } from "@mui/material";
@@ -13,7 +12,7 @@ const Footer: React.FC = () => {
   return (
     <Box
       sx={{
-        backgroundColor: "#004B39", // Green background
+        backgroundColor: "#004B39",
         color: "white",
         py: { xs: 4, md: 8 },
         px: { xs: 2, md: 10 },
@@ -44,7 +43,7 @@ const Footer: React.FC = () => {
       <Button
         variant="contained"
         sx={{
-          backgroundColor: "#DB9E30", // Gold
+          backgroundColor: "#DB9E30",
           color: "black",
           px: 4,
           py: 1.5,
@@ -72,7 +71,7 @@ const Footer: React.FC = () => {
         <Grid item xs={12} md={4}>
           <Box
             sx={{
-              backgroundColor: "#DB9E30", // Gold
+              backgroundColor: "#DB9E30",
               display: "inline-block",
               p: 2,
               borderRadius: "50%",

@@ -2,8 +2,3 @@
     font-family: 'CinzelDecorative';
     src: url('../../public/fonts/CinzelDecorative-Regular.ttf') format('truetype');
   }
-
-body{
-    margin: 0;
-    padding : 0;
-}
