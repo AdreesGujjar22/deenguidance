@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "../styles/theme";
-import "./page.module.css";
+import "../styles/global.css";
 
 export const metadata: Metadata = {
   title: "Deen Guidance",
