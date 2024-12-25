@@ -79,11 +79,12 @@ const HeroSection: React.FC = () => {
             maxWidth: "600px",
             fontSize: { xs: "16px", md: "20px" },
             lineHeight: { xs: "1.5", md: "2" },
-            animation: "fadeIn 2s ease-in-out 0.5s",
-            animationFillMode: "forwards",
+            color : "lightgrey"
+            // animation: "fadeIn 2s ease-in-out 0.5s",
+            // animationFillMode: "forwards",
           }}
         >
-          This is Deen Guidance Institute to invite people to Islam.
+          Our mission is to share the teachings of Islam and its timeless wisdom with people from all backgrounds. By studying the Quran, Hadith, Fiqh, and Tafseer, we aim to foster understanding and engage in thoughtful dialogue with those seeking clarity or holding different beliefs. Through knowledge and spirituality, we strive to bring peace and purpose to hearts and minds worldwide.
         </Typography>
 
         {/* Call to Action */}
