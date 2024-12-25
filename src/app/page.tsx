@@ -2,7 +2,7 @@
 import React,{useEffect} from 'react';
 import './page.module.css';
 import { useRouter } from 'next/navigation';
-
+import CircularProgress from '@mui/material/CircularProgress';
 const HomePageComponent:React.FC = () => {
   const router = useRouter();
 
@@ -11,7 +11,7 @@ const HomePageComponent:React.FC = () => {
   },[])
 
   return (
-    <h1>Loading ... </h1>
+    <CircularProgress />
   );
 };
 

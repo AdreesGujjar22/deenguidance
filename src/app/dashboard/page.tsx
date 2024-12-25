@@ -2,6 +2,7 @@
 import React from 'react';
 import NavBar from "./components/NavBar";
 import HeroSection from './components/HeroSection';
+import Services from './components/Services';
 import Footer from './components/Footer';
 
 const DashBoard = () => {
@@ -9,6 +10,7 @@ const DashBoard = () => {
     <>
       <NavBar />
       <HeroSection />
+      <Services/>
       <Footer />
     </>
   );

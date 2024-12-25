@@ -99,7 +99,7 @@ const Footer: React.FC = () => {
             INFORMATION
           </Typography>
           <Typography variant="body1" sx={{ fontSize: "14px" }}>
-            WE invite people of the whole world to accept Islam . So, any atheists , humanists m and those who believe.
+          Our mission is to share the teachings of Islam and its timeless wisdom with people from all backgrounds.
           </Typography>
         </Grid>
 
@@ -120,7 +120,7 @@ const Footer: React.FC = () => {
           <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
             <EmailIcon sx={{ mr: 1 }} />
             <Typography variant="body1" sx={{ fontSize: "14px" }}>
-              deenguidanceinstitue@gmail.com
+            deenguidanceinstitute@gmail.com
             </Typography>
           </Box>
           <Box sx={{ display: "flex", alignItems: "center" }}>

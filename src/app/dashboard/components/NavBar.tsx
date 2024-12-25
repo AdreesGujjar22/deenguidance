@@ -96,15 +96,7 @@ function NavBar() {
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
-              // anchorOrigin={{
-              //   vertical: 'top',
-              //   horizontal: 'left',
-              // }}
               keepMounted
-              // transformOrigin={{
-              //   vertical: 'top',
-              //   horizontal: 'left',
-              // }}
               open={isMenuOpen}
               onClose={handleCloseNavMenu}
               sx={{
