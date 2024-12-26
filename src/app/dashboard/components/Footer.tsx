@@ -7,6 +7,8 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import Image from 'next/image';
+import Logo from "../../../../public/images/logo.png";
 
 const Footer: React.FC = () => {
   return (
@@ -77,16 +79,23 @@ const Footer: React.FC = () => {
               borderRadius: "50%",
             }}
           >
-            <Typography
-              variant="h5"
+            <Box
               sx={{
-                fontWeight: 900,
-                color: "white",
-                fontSize: "24px",
+                display: "flex",
+                alignItems: "center",
               }}
             >
-              DeenGuidance
-            </Typography>
+              <Image
+                src={Logo}
+                alt="Logo"
+                width={50}
+                height={50}
+                style={{
+                  borderRadius: "50%",
+                  objectFit: "cover",
+                }}
+              />
+            </Box>
           </Box>
         </Grid>
 
