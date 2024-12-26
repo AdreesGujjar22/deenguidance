@@ -10,6 +10,8 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
+import Image from 'next/image';
+import Logo from "../../../../public/images/logo.png";
 
 const pages = ['Home', 'Charity', 'Events', 'Scholars', 'Pages', 'Contact'];
 
@@ -27,68 +29,59 @@ function NavBar() {
   const isMenuOpen = Boolean(anchorElNav);
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ boxShadow: "none" }}>
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          {/* Logo for desktop */}
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#"
+        <Toolbar disableGutters sx={{ justifyContent: "space-between" }}>
+          {/* Logo */}
+          <Box
             sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
+              display: "flex",
+              alignItems: "center",
             }}
           >
-            LOGO
-          </Typography>
+            <Image
+              src={Logo}
+              alt="Logo"
+              width={50}
+              height={50}
+              style={{
+                borderRadius: "50%",
+                objectFit: "cover",
+              }}
+            />
+          </Box>
 
           {/* Menu items for desktop */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: "flex-end" }}>
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{
+                  my: 2,
+                  color: 'white',
+                  display: 'block',
+                  mx: 1,
+                  fontSize: "14px",
+                  textTransform: "none",
+                }}
               >
                 {page}
               </Button>
             ))}
           </Box>
 
-          {/* Logo for mobile */}
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
-
           {/* Menu icon for mobile */}
-          <Box sx={{ display: { xs: 'flex', md: 'none'} }}>
+          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
               aria-label="toggle navigation menu"
               onClick={isMenuOpen ? handleCloseNavMenu : handleOpenNavMenu}
               color="inherit"
+              sx={{
+                zIndex: 1301,
+                position: 'relative',
+              }}
             >
               {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
             </IconButton>
@@ -99,29 +92,25 @@ function NavBar() {
               keepMounted
               open={isMenuOpen}
               onClose={handleCloseNavMenu}
-              sx={{
-                display: { 
-                  xs: 'block', 
-                  md: 'none' , 
-                },
-              }}
-            >
-              <Box
-                sx={{
-                  width: '100%',
-                  height: '100%',
+              PaperProps={{
+                sx: {
+                  width: '100vw',
+                  maxWidth: '100vw',
+                  height: '100vh',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
-                }}
-              >
-                {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{page}</Typography>
-                  </MenuItem>
-                ))}
-              </Box>
+                  backgroundColor: 'white',
+                  zIndex: 1300,
+                },
+              }}
+            >
+              {pages.map((page) => (
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page}</Typography>
+                </MenuItem>
+              ))}
             </Menu>
           </Box>
         </Toolbar>
