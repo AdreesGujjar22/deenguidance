@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Box, Typography, Button, Grid, IconButton } from "@mui/material";
+import { Box, Typography, Button, Grid, IconButton, Link } from "@mui/material";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -99,7 +99,7 @@ const Footer: React.FC = () => {
             INFORMATION
           </Typography>
           <Typography variant="body1" sx={{ fontSize: "14px" }}>
-          Our mission is to share the teachings of Islam and its timeless wisdom with people from all backgrounds.
+            Our mission is to share the teachings of Islam and its timeless wisdom with people from all backgrounds.
           </Typography>
         </Grid>
 
@@ -111,25 +111,58 @@ const Footer: React.FC = () => {
           >
             CONTACT INFO
           </Typography>
+
+          {/* Phone */}
           <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
             <PhoneIcon sx={{ mr: 1 }} />
-            <Typography variant="body1" sx={{ fontSize: "14px" }}>
+            <Link
+              href="tel:+923341436311"
+              sx={{
+                fontSize: "14px",
+                textDecoration: "none",
+                color: "inherit",
+                cursor: "pointer",
+              }}
+            >
               PK: +92 334 1436311
-            </Typography>
+            </Link>
           </Box>
+
+          {/* Email */}
           <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
             <EmailIcon sx={{ mr: 1 }} />
-            <Typography variant="body1" sx={{ fontSize: "14px" }}>
-            deenguidanceinstitute@gmail.com
-            </Typography>
+            <Link
+              href="mailto:deenguidanceinstitute@gmail.com"
+              sx={{
+                fontSize: "14px",
+                textDecoration: "none",
+                color: "inherit",
+                cursor: "pointer",
+              }}
+            >
+              deenguidanceinstitute@gmail.com
+            </Link>
           </Box>
+
+          {/* Address */}
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <LocationOnIcon sx={{ mr: 1 }} />
-            <Typography variant="body1" sx={{ fontSize: "14px" }}>
-              Lahore , Pakistan
-            </Typography>
+            <Link
+              href="https://maps.app.goo.gl/thCtQKjCkAmTUjZM9"
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{
+                fontSize: "14px",
+                textDecoration: "none",
+                color: "inherit",
+                cursor: "pointer",
+              }}
+            >
+              Lahore, Pakistan
+            </Link>
           </Box>
         </Grid>
+
       </Grid>
 
       {/* Bottom Section */}
