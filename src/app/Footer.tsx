@@ -1,14 +1,16 @@
 
 import React from "react";
-import { Box, Typography, Button, Grid, IconButton, Link } from "@mui/material";
+import { Box, Typography, Grid, Link } from "@mui/material";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
+import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import Image from 'next/image';
-import Logo from "../../../../public/images/logo.png";
+import Logo from "../../public/images/logo.png";
+import MainButton from "../components/MainButton";
+import MainLink from "../components/MainLink";
 
 const Footer: React.FC = () => {
   return (
@@ -23,7 +25,7 @@ const Footer: React.FC = () => {
     >
       {/* Top Section */}
       <Typography
-        variant="h5"
+        variant="h2"
         sx={{
           fontWeight: 700,
           fontSize: { xs: "18px", md: "24px" },
@@ -42,23 +44,7 @@ const Footer: React.FC = () => {
       >
         INSPIRED? JOIN US RIGHT NOW!
       </Typography>
-      <Button
-        variant="contained"
-        sx={{
-          backgroundColor: "#DB9E30",
-          color: "black",
-          px: 4,
-          py: 1.5,
-          fontSize: "16px",
-          fontWeight: 700,
-          borderRadius: "30px",
-          "&:hover": {
-            backgroundColor: "#b88627",
-          },
-        }}
-      >
-        Join Community
-      </Button>
+      <MainButton content="Join Community" />
 
       {/* Middle Section */}
       <Grid
@@ -73,9 +59,8 @@ const Footer: React.FC = () => {
         <Grid item xs={12} md={4}>
           <Box
             sx={{
-              backgroundColor: "#DB9E30",
+              backgroundColor: "white",
               display: "inline-block",
-              p: 2,
               borderRadius: "50%",
             }}
           >
@@ -88,8 +73,8 @@ const Footer: React.FC = () => {
               <Image
                 src={Logo}
                 alt="Logo"
-                width={50}
-                height={50}
+                width={100}
+                height={100}
                 style={{
                   borderRadius: "50%",
                   objectFit: "cover",
@@ -102,8 +87,8 @@ const Footer: React.FC = () => {
         {/* Information */}
         <Grid item xs={12} md={4}>
           <Typography
-            variant="h6"
-            sx={{ fontWeight: 700, fontSize: "20px", mb: 2 }}
+            variant="h2"
+            sx={{ fontWeight: 700, fontSize: "20px", mb: 2, letterSpacing :"3px" }}
           >
             INFORMATION
           </Typography>
@@ -115,65 +100,16 @@ const Footer: React.FC = () => {
         {/* Contact Info */}
         <Grid item xs={12} md={4}>
           <Typography
-            variant="h6"
-            sx={{ fontWeight: 700, fontSize: "20px", mb: 2 }}
+            variant="h2"
+            sx={{ fontWeight: 700, fontSize: "20px", mb: 2 , letterSpacing :"3px"}}
           >
             CONTACT INFO
           </Typography>
-
-          {/* Phone */}
-          <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
-            <PhoneIcon sx={{ mr: 1 }} />
-            <Link
-              href="tel:+923341436311"
-              sx={{
-                fontSize: "14px",
-                textDecoration: "none",
-                color: "inherit",
-                cursor: "pointer",
-              }}
-            >
-              PK: +92 334 1436311
-            </Link>
-          </Box>
-
-          {/* Email */}
-          <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
-            <EmailIcon sx={{ mr: 1 }} />
-            <Link
-              href="mailto:deenguidanceinstitute@gmail.com"
-              sx={{
-                fontSize: "14px",
-                textDecoration: "none",
-                color: "inherit",
-                cursor: "pointer",
-              }}
-            >
-              deenguidanceinstitute@gmail.com
-            </Link>
-          </Box>
-
-          {/* Address */}
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <LocationOnIcon sx={{ mr: 1 }} />
-            <Link
-              href="https://maps.app.goo.gl/thCtQKjCkAmTUjZM9"
-              target="_blank"
-              rel="noopener noreferrer"
-              sx={{
-                fontSize: "14px",
-                textDecoration: "none",
-                color: "inherit",
-                cursor: "pointer",
-              }}
-            >
-              Lahore, Pakistan
-            </Link>
-          </Box>
+          <MainLink icon={<PhoneIcon sx={{ mr: 1 }} />} linkContent="PK: +92 334 1436311" linkHref="tel:+923341436311"/>
+          <MainLink icon={<EmailIcon sx={{ mr: 1 }} />} linkContent="deenguidanceinstitute@gmail.com" linkHref="mailto:deenguidanceinstitute@gmail.com"/>
+          <MainLink icon={<LocationOnIcon sx={{ mr: 1 }} />} linkContent="Lahore, Pakistan" linkHref="https://maps.app.goo.gl/thCtQKjCkAmTUjZM9"/>
         </Grid>
-
       </Grid>
-
       {/* Bottom Section */}
       <Box
         sx={{
@@ -186,16 +122,46 @@ const Footer: React.FC = () => {
         <Typography variant="body2" sx={{ fontSize: "14px", mb: 2 }}>
           DeenGuodance © Copyright 2024. All Rights Reserved.
         </Typography>
-        <Box>
-          <IconButton sx={{ color: "white" }}>
+        <Box sx={{ display: "flex", gap: 2, justifyContent: "center", alignItems: "center" }}>
+          <Link
+            href="https://www.facebook.com/share/1E3ja5EfXS/?mibextid=qi2Omg"
+            target="_blank"
+            rel="noopener noreferrer"
+            sx={{
+              color: "white",transition: "transform 0.3s, color 0.3s",
+              "&:hover": {
+                color: "rgba(200,200,200,1)",
+              },
+            }}
+          >
             <FacebookIcon />
-          </IconButton>
-          <IconButton sx={{ color: "white" }}>
-            <TwitterIcon />
-          </IconButton>
-          <IconButton sx={{ color: "white" }}>
+          </Link>
+          <Link
+            href="https://www.instagram.com/deenguidance.institute/profilecard/?igsh=bG9sM2wya2h5ajM1"
+            target="_blank"
+            rel="noopener noreferrer"
+            sx={{
+              color: "white",transition: "transform 0.3s, color 0.3s",
+              "&:hover": {
+                color: "rgba(200,200,200,1)",
+              },
+            }}
+          >
+            <InstagramIcon />
+          </Link>
+          <Link
+            href="https://www.linkedin.com/in/deen-guidance-institute-06ba35343"
+            target="_blank"
+            rel="noopener noreferrer"
+            sx={{
+              color: "white",transition: "transform 0.3s, color 0.3s",
+              "&:hover": {
+                color: "rgba(200,200,200,1)",
+              },
+            }}
+          >
             <LinkedInIcon />
-          </IconButton>
+          </Link>
         </Box>
       </Box>
     </Box>

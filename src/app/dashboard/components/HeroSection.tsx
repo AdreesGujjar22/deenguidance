@@ -1,28 +1,30 @@
 "use client";
 
 import React from "react";
-import { Box, Typography, Button, Container } from "@mui/material";
+import { Box, Typography, Container } from "@mui/material";
 import Image from "next/image";
 import PersonImage from "../../../../public/images/HeroSectionImage.png";
+import MainButton from "../../../components/MainButton";
+import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 
 const HeroSection: React.FC = () => {
   return (
     <Box
       sx={{
-        backgroundColor: "#004B39",
+        backgroundColor: "primary.main",
         color: "white",
         minHeight: "100vh",
         display: "flex",
         alignItems: "center",
-        justifyContent: "space-between",
+        justifyContent: "center",
         flexDirection: { xs: "column", md: "row" },
-        textAlign: "center",
         position: "relative",
         overflow: "hidden",
-        padding: { xs: "20px", md: "40px" },
+        padding: { xs: "20px", sm: "40px" },
+        gap: { xs: "20px", md: "40px" },
       }}
     >
-      {/* Background Image */}
+      {/* Background Overlay */}
       <Box
         sx={{
           position: "absolute",
@@ -30,38 +32,37 @@ const HeroSection: React.FC = () => {
           left: 0,
           width: "100%",
           height: "100%",
-          // backgroundImage: "url('/background.svg')",
+          backgroundImage: "url('/images/bgImg.png')", // Adjust the path as needed
           backgroundSize: "cover",
           backgroundPosition: "center",
-          opacity: 0.3,
+          opacity: 0.04,
           zIndex: 0,
-          animation: "fadeIn 2s ease-in-out",
-          "@keyframes fadeIn": {
-            from: { opacity: 0 },
-            to: { opacity: 0.3 },
-          },
         }}
       />
 
+      {/* Text Content */}
       <Container
         sx={{
           position: "relative",
           zIndex: 2,
           display: "flex",
           flexDirection: "column",
-          alignItems: { xs: "center", md: "flex-start" },
-          textAlign: { xs: "center", md: "left" },
-          maxWidth: "600px",
+          justifyContent: "center",
+          alignItems: "center",
+          textAlign: "center",
+          maxWidth: { xs: "90%", md: "50%" },
+          gap: 3,
         }}
       >
         {/* Headline */}
         <Typography
           variant="h1"
           sx={{
-            mb: 2,
-            fontSize: { xs: "28px", md: "48px" },
-            fontWeight: "bold",
-            lineHeight: { xs: "1.2", md: "1.5" },
+            fontSize: { xs: "28px", sm: "36px", md: "54px" },
+            fontWeight: 800,
+            fontStyle: "italic",
+            letterSpacing: "2px",
+            lineHeight: 1.2,
             animation: "slideIn 1.5s ease-out",
             "@keyframes slideIn": {
               from: { transform: "translateY(-50px)", opacity: 0 },
@@ -69,55 +70,37 @@ const HeroSection: React.FC = () => {
             },
           }}
         >
-          Call upon Allah with faith and trust in His response.
+          Call upon Allah and trust in His response.
         </Typography>
 
         {/* Subheadline */}
         <Typography
           sx={{
-            mb: 4,
+            fontSize: { xs: "16px", md: "18px" },
+            lineHeight: 1.8,
+            color: "lightgrey",
             maxWidth: "600px",
-            fontSize: { xs: "16px", md: "20px" },
-            lineHeight: { xs: "1.5", md: "2" },
-            color : "lightgrey"
-            // animation: "fadeIn 2s ease-in-out 0.5s",
-            // animationFillMode: "forwards",
           }}
         >
-          Our mission is to share the teachings of Islam and its timeless wisdom with people from all backgrounds. By studying the Quran, Hadith, Fiqh, and Tafseer, we aim to foster understanding and engage in thoughtful dialogue with those seeking clarity or holding different beliefs. Through knowledge and spirituality, we strive to bring peace and purpose to hearts and minds worldwide.
+          Our mission is to share the teachings of Islam and its timeless wisdom
+          with people from all backgrounds.
         </Typography>
 
-        {/* Call to Action */}
-        <Button
-          sx={{
-            px: { xs: 4, md: 6 },
-            py: { xs: 1.5, md: 2 },
-            borderRadius: "30px",
-            fontSize: { xs: "14px", md: "16px" },
-            fontWeight: "bold",
-            backgroundColor: "gold",
-            color: "black",
-            boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-            transition: "transform 0.3s, background-color 0.3s",
-            "&:hover": {
-              backgroundColor: "#e5c100",
-              transform: "scale(1.05)",
-            },
-          }}
-        >
-          Listen to the Holy Quran
-        </Button>
+        {/* Button */}
+        <MainButton
+          content="Listen to the Holy Quran"
+          icon={<PlayCircleIcon sx={{ mr: 1, fontSize: "30px" }} />}
+        />
       </Container>
 
       {/* Image Section */}
       <Box
         sx={{
           position: "relative",
-          width: { xs: "80%", sm: "60%", md: "40%" },
+          width: { xs: "90%", sm: "60%", md: "40%" },
           maxWidth: "400px",
-          marginTop: { xs: "20px", md: "0" },
-          alignSelf: { xs: "center", md: "flex-end" },
-          border: "6px solid gold",
+          border: "6px solid",
+          borderColor: "secondary.main",
           borderRadius: "50%",
           overflow: "hidden",
           boxShadow: "0 0 20px rgba(0, 0, 0, 0.5)",
