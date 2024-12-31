@@ -8,6 +8,7 @@ const theme: ThemeOptions = createTheme({
     },
     secondary: {
       main: '#DB9E30',
+      light : "rgba(219,158,48,0.5)"
     },
   },
   typography: {
@@ -35,24 +36,9 @@ const theme: ThemeOptions = createTheme({
       fontStyle : "normal",
       fontWeight : 400,
       fontSize : '13px',
-      lineHeight : '30px'
+      lineHeight : '20px'
     },
   },
-  // components: {
-  //   MuiButton: {
-  //     styleOverrides: {
-  //       root: {
-  //         textTransform: 'none',
-  //         fontStyle : "normal",
-  //         fontWeight : 700,
-  //         fontSize : "16px",
-  //         borderRadius : "6px",
-  //         color:"#FFFFFF",
-  //         backgroundColor : "#DB9E30"
-  //       },
-  //     },
-  //   },
-  // },
 });
 
 export default theme;
