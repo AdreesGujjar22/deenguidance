@@ -1,5 +1,4 @@
 "use client";
-
 import React from "react";
 import { Box, Typography, Container } from "@mui/material";
 import Image from "next/image";
@@ -20,7 +19,8 @@ const HeroSection: React.FC = () => {
         flexDirection: { xs: "column", md: "row" },
         position: "relative",
         overflow: "hidden",
-        padding: { xs: "20px", sm: "40px" },
+        paddingX: { xs: "20px", sm: "40px" },
+        paddingY: { xs: "100px", sm: "135px" },
         gap: { xs: "20px", md: "40px" },
       }}
     >
@@ -76,6 +76,7 @@ const HeroSection: React.FC = () => {
         {/* Subheadline */}
         <Typography
           sx={{
+            fontFamily :"Raleway",
             fontSize: { xs: "16px", md: "18px" },
             lineHeight: 1.8,
             color: "lightgrey",
@@ -90,6 +91,7 @@ const HeroSection: React.FC = () => {
         <MainButton
           content="Listen to the Holy Quran"
           icon={<PlayCircleIcon sx={{ mr: 1, fontSize: "30px" }} />}
+          videoUrl="https://www.youtube.com/embed/GeSVXVIJtQc"
         />
       </Container>
 

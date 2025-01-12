@@ -4,43 +4,54 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
+import Drawer from "@mui/material/Drawer";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
-import ScheduleIcon from "@mui/icons-material/Schedule";
 import CloseIcon from "@mui/icons-material/Close";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import Image from "next/image";
 import Logo from "../../public/images/logo.png";
 import MainButton from "../components/MainButton";
+import ScheduleIcon from "@mui/icons-material/Schedule";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import MainLink from "../components/MainLink";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
-import MainLink from "../components/MainLink";
-
-const pages = ["Home", "Charity", "Events", "Scholars", "Pages", "Contact"];
+import Link from "next/link";
+const pages = [
+  {
+    name : "Home",
+    link : "/"
+  }, 
+  {
+    name : "Contact",
+    link : "/contactus"
+  }
+];
 
 function NavBar() {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+  const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const [scrolling, setScrolling] = React.useState(false);
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  const isMenuOpen = Boolean(anchorElNav);
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setScrolling(window.scrollY > 50);
+    };
+  
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <AppBar
-      position="sticky"
+      position="fixed"
       sx={{
-        boxShadow: "0 0 20px rgba(0, 0, 0, 0.5)",
-        backgroundColor: "primary.main",  // Dark background for better contrast
+        boxShadow: "none",
+        backgroundColor: scrolling ? "#004B39" : "transparent",
+        fontFamily: "Raleway",
       }}
     >
       <Container
@@ -75,38 +86,24 @@ function NavBar() {
                 width: "80%",
               }}
             >
-              <Box sx={{
-                display:{ xs: "none", md: "flex" }
-              }} alignSelf="self-start" gap={3}>
-                <MainLink
-                  icon={<PhoneIcon sx={{ mr: 1 }} />}
-                  linkContent="PK: +92 334 1436311"
-                  linkHref="tel:+923341436311"
-                />
-                <MainLink
-                  icon={<EmailIcon sx={{ mr: 1 }} />}
-                  linkContent="deenguidanceinstitute@gmail.com"
-                  linkHref="mailto:deenguidanceinstitute@gmail.com"
-                />
-              </Box>
               <Box display="flex" alignSelf="self-end">
-                {pages.map((page) => (
+                {pages.map((page,index) => (
+                  <Link key={index} href={page.link} passHref style={{
+                    textDecoration : "none"
+                  }} >
                   <Button
-                    key={page}
-                    onClick={handleCloseNavMenu}
                     sx={{
-                      my: 2,
                       color: "white",
                       display: "block",
-                      mx: 1,
-                      fontSize: "14px",
+                      mx: 2,
+                      fontSize: "11px",
                       textTransform: "none",
-                      height: "fit-content",
-                      p: 0,
+                      fontFamily: "Raleway",
                     }}
                   >
-                    {page}
+                    {page.name}
                   </Button>
+                </Link>
                 ))}
               </Box>
             </Box>
@@ -118,96 +115,78 @@ function NavBar() {
             />
           </Box>
 
-          {/* Contact Info for Mobile */}
-          <Box
-            sx={{
-              display: { xs: "flex", md: "none" },
-              flexDirection: "column",
-              alignItems: "center",
-              width: "100%",
-              gap: 2,
-              mb: 2,
-            }}
-          >
-            <Box
-              sx={{
-                display:{ xs: "none", md: "flex" },
-                flexDirection: "row",
-                justifyContent: "center",
-                gap: 2,
-                flexWrap: "wrap",
-              }}
-            >
-              <MainLink
-                icon={<PhoneIcon sx={{ mr: 1 }} />}
-                linkContent="PK: +92 334 1436311"
-                linkHref="tel:+923341436311"
-              />
-              <MainLink
-                icon={<EmailIcon sx={{ mr: 1 }} />}
-                linkContent="deenguidanceinstitute@gmail.com"
-                linkHref="mailto:deenguidanceinstitute@gmail.com"
-              />
-            </Box>
-          </Box>
-
-          {/* Menu icon for mobile */}
+          {/* Drawer for mobile */}
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
-              aria-label="toggle navigation menu"
-              onClick={isMenuOpen ? handleCloseNavMenu : handleOpenNavMenu}
+              aria-label="toggle navigation drawer"
+              onClick={() => setDrawerOpen(true)}
               color="inherit"
               sx={{
                 zIndex: 1301,
                 position: "relative",
               }}
             >
-              {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
+              <MenuIcon />
             </IconButton>
-
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              keepMounted
-              open={isMenuOpen}
-              onClose={handleCloseNavMenu}
-              PaperProps={{
-                sx: {
+            <Drawer
+              anchor="right"
+              open={drawerOpen}
+              onClose={() => setDrawerOpen(false)}
+              sx={{
+                zIndex: 1300,
+                "& .MuiDrawer-paper": {
                   width: "100vw",
-                  maxWidth: "100vw",
-                  height: "100vh",
+                  backgroundColor: "primary.main",
+                  color: "white",
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
                   justifyContent: "center",
-                  backgroundColor: "primary.main", // Dark background for menu
-                  color: "white", // White text for readability
                 },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
+              <IconButton
+                onClick={() => setDrawerOpen(false)}
+                sx={{ position: "absolute", top: 16, right: 16 }}
+              >
+                <CloseIcon sx={{ color: "white" }} />
+              </IconButton>
+              {pages.map((page,index) => (
+                <Link key={index} href={page.link} passHref 
+                style={{
+                  textDecoration : "none"
+                }} 
+                >
+                <Button
+                  sx={{
+                    color: "white",
+                    display: "block",
+                    mx: 2,
+                    fontSize: "11px",
+                    textTransform: "none",
+                    fontFamily: "Raleway",
+                  }}
+                >
+                  {page.name}
+                </Button>
+              </Link>
               ))}
-              <MenuItem onClick={handleCloseNavMenu} sx={{
-                display:{ xs: "none", md: "flex" }
-              }}>
+              <MenuItem>
                 <MainLink
                   icon={<PhoneIcon sx={{ mr: 1 }} />}
                   linkContent="PK: +92 334 1436311"
                   linkHref="tel:+923341436311"
                 />
               </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
+              <MenuItem>
                 <MainLink
                   icon={<EmailIcon sx={{ mr: 1 }} />}
                   linkContent="deenguidanceinstitute@gmail.com"
                   linkHref="mailto:deenguidanceinstitute@gmail.com"
                 />
               </MenuItem>
-            </Menu>
+            </Drawer>
           </Box>
         </Toolbar>
       </Container>
