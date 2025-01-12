@@ -2,3 +2,7 @@
     font-family: 'CinzelDecorative';
     src: url('../../public/fonts/CinzelDecorative-Regular.ttf') format('truetype');
   }
+  @font-face {
+    font-family: 'Raleway';
+    src: url('../../public/fonts/Raleway-VariableFont_wght.ttf') format('truetype');
+  }

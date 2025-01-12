@@ -71,6 +71,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, icon }) =
         sx={{
           color: "#6c6c6c",
           zIndex: 1,
+          fontFamily :"Raleway",
         }}
       >
         {description}

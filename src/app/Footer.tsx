@@ -1,4 +1,4 @@
-
+'use client'
 import React from "react";
 import { Box, Typography, Grid, Link } from "@mui/material";
 import PhoneIcon from "@mui/icons-material/Phone";
@@ -11,7 +11,7 @@ import Image from 'next/image';
 import Logo from "../../public/images/logo.png";
 import MainButton from "../components/MainButton";
 import MainLink from "../components/MainLink";
-
+import NextLink from 'next/link';
 const Footer: React.FC = () => {
   return (
     <Box
@@ -44,8 +44,9 @@ const Footer: React.FC = () => {
       >
         INSPIRED? JOIN US RIGHT NOW!
       </Typography>
-      <MainButton content="Join Community" />
-
+      <Link component={NextLink} href='/contactus' passHref style={{textDecoration: "none"}} >
+        <MainButton content="Join Community" />
+      </Link>
       {/* Middle Section */}
       <Grid
         container
@@ -88,11 +89,11 @@ const Footer: React.FC = () => {
         <Grid item xs={12} md={4}>
           <Typography
             variant="h2"
-            sx={{ fontWeight: 700, fontSize: "20px", mb: 2, letterSpacing :"3px" }}
+            sx={{ fontWeight: 700, fontSize: "20px", mb: 2, letterSpacing: "3px" }}
           >
             INFORMATION
           </Typography>
-          <Typography variant="body1" sx={{ fontSize: "14px" }}>
+          <Typography variant="body1" sx={{ fontSize: "14px", fontFamily: "Raleway", }}>
             Our mission is to share the teachings of Islam and its timeless wisdom with people from all backgrounds.
           </Typography>
         </Grid>
@@ -101,13 +102,13 @@ const Footer: React.FC = () => {
         <Grid item xs={12} md={4}>
           <Typography
             variant="h2"
-            sx={{ fontWeight: 700, fontSize: "20px", mb: 2 , letterSpacing :"3px"}}
+            sx={{ fontWeight: 700, fontSize: "20px", mb: 2, letterSpacing: "3px" }}
           >
             CONTACT INFO
           </Typography>
-          <MainLink icon={<PhoneIcon sx={{ mr: 1 }} />} linkContent="PK: +92 334 1436311" linkHref="tel:+923341436311"/>
-          <MainLink icon={<EmailIcon sx={{ mr: 1 }} />} linkContent="deenguidanceinstitute@gmail.com" linkHref="mailto:deenguidanceinstitute@gmail.com"/>
-          <MainLink icon={<LocationOnIcon sx={{ mr: 1 }} />} linkContent="Lahore, Pakistan" linkHref="https://maps.app.goo.gl/thCtQKjCkAmTUjZM9"/>
+          <MainLink icon={<PhoneIcon sx={{ mr: 1 }} />} linkContent="PK: +92 334 1436311" linkHref="tel:+923341436311" />
+          <MainLink icon={<EmailIcon sx={{ mr: 1 }} />} linkContent="deenguidanceinstitute@gmail.com" linkHref="mailto:deenguidanceinstitute@gmail.com" />
+          <MainLink icon={<LocationOnIcon sx={{ mr: 1 }} />} linkContent="Lahore, Pakistan" linkHref="https://maps.app.goo.gl/thCtQKjCkAmTUjZM9" />
         </Grid>
       </Grid>
       {/* Bottom Section */}
@@ -128,7 +129,7 @@ const Footer: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             sx={{
-              color: "white",transition: "transform 0.3s, color 0.3s",
+              color: "white", transition: "transform 0.3s, color 0.3s",
               "&:hover": {
                 color: "rgba(200,200,200,1)",
               },
@@ -141,7 +142,7 @@ const Footer: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             sx={{
-              color: "white",transition: "transform 0.3s, color 0.3s",
+              color: "white", transition: "transform 0.3s, color 0.3s",
               "&:hover": {
                 color: "rgba(200,200,200,1)",
               },
@@ -154,7 +155,7 @@ const Footer: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             sx={{
-              color: "white",transition: "transform 0.3s, color 0.3s",
+              color: "white", transition: "transform 0.3s, color 0.3s",
               "&:hover": {
                 color: "rgba(200,200,200,1)",
               },

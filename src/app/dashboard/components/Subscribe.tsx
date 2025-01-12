@@ -23,9 +23,8 @@ const SubscribeComponent: React.FC = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#F5F5F5",
-        padding: "16px",
-        margin: "10px 0px",
+        backgroundColor: "white",
+        padding: "40px 16px",
       }}
     >
       <Box
@@ -67,7 +66,8 @@ const SubscribeComponent: React.FC = () => {
         </Typography>
         <Typography
           sx={{
-            fontSize: isMobile ? "14px" : "16px",
+            fontFamily :"Raleway",
+            fontSize: isMobile ? "13px" : "15px",
             marginBottom: "16px",
             zIndex: 2,
             opacity: 0.9,
@@ -89,13 +89,13 @@ const SubscribeComponent: React.FC = () => {
             onChange={(e) => setEmail(e.target.value)}
             InputProps={{
               sx: {
-                fontSize: "14px", // Smaller font size
-                padding: "0px 0px", // Reduced padding
+                fontSize: "14px",
+                padding: "0px 0px",
               },
             }}
             InputLabelProps={{
               sx: {
-                fontSize: "12px", // Smaller placeholder text
+                fontSize: "12px",
               },
             }}
             sx={{
