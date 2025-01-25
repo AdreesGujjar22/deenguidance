@@ -121,7 +121,7 @@ const Footer: React.FC = () => {
         }}
       >
         <Typography variant="body2" sx={{ fontSize: "14px", mb: 2 }}>
-          DeenGuodance © Copyright 2024. All Rights Reserved.
+          DeenGuidance © Copyright 2024. All Rights Reserved.
         </Typography>
         <Box sx={{ display: "flex", gap: 2, justifyContent: "center", alignItems: "center" }}>
           <Link
