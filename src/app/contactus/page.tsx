@@ -15,7 +15,8 @@ export default function ContactForm() {
     }}>
       <Box sx={{
         padding: "24px",
-        paddingTop : {xs : "100px",md :"135px"},
+        paddingTop : "135px",
+        paddingBottom : "75px",
         maxWidth: "900px",
         margin: "auto",
         display: "flex",

@@ -20,7 +20,7 @@ const HeroSection: React.FC = () => {
         position: "relative",
         overflow: "hidden",
         paddingX: { xs: "20px", sm: "40px" },
-        paddingY: { xs: "100px", sm: "135px" },
+        paddingY: "135px",
         gap: { xs: "20px", md: "40px" },
       }}
     >

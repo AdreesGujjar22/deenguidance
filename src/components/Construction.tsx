@@ -17,7 +17,7 @@ const Contruction = ({
 
         }}
       >
-        <small>The website is currently under contruction...</small>
+        <small>The website is currently under devolpment...</small>
         <small>ویب سائٹ پر فی الحال کام جاری ہے ۔۔۔</small>
       </Box>
     </>

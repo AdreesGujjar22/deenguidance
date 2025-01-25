@@ -34,7 +34,7 @@ const MainButton: React.FC<MainButtonProps> = ({
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          height: "100px",
+          height: "auto",
         }}
       >
         <Box
@@ -49,8 +49,8 @@ const MainButton: React.FC<MainButtonProps> = ({
         >
           <Button
             sx={{
-              px: { xs: 2, md: 4 },
-              py: { xs: 1, md: 1.5 },
+              px: { xs: 2, md: 3 },
+              py: { xs: 1, md: 1.2 },
               borderRadius: "30px",
               fontSize: { xs: "11px", md: fs },
               fontWeight: "bold",
@@ -68,8 +68,8 @@ const MainButton: React.FC<MainButtonProps> = ({
             sx={{
               position: "absolute",
               zIndex: -1,
-              left: 7,
-              top: 6,
+              left: 5,
+              top: 5,
               backgroundColor: "secondary.light",
               width: "100%",
               height: "100%",
