@@ -60,6 +60,8 @@ const SubscribeComponent: React.FC = () => {
             fontWeight: "bold",
             fontSize: isMobile ? "20px" : "28px",
             zIndex: 2,
+            lineHeight : "35px",
+            marginBottom: "16px",
           }}
         >
           Subscribe to Our Newsletter
@@ -70,6 +72,7 @@ const SubscribeComponent: React.FC = () => {
             fontSize: isMobile ? "13px" : "15px",
             marginBottom: "16px",
             zIndex: 2,
+            lineHeight : "20px",
             opacity: 0.9,
           }}
         >
