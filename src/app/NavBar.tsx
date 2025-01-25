@@ -19,14 +19,15 @@ import MainLink from "../components/MainLink";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
 import Link from "next/link";
+import Construction from "../components/Construction";
 const pages = [
   {
-    name : "Home",
-    link : "/"
-  }, 
+    name: "Home",
+    link: "/"
+  },
   {
-    name : "Contact",
-    link : "/contactus"
+    name: "Contact",
+    link: "/contactus"
   }
 ];
 
@@ -38,7 +39,7 @@ function NavBar() {
     const handleScroll = () => {
       setScrolling(window.scrollY > 50);
     };
-  
+
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -54,6 +55,7 @@ function NavBar() {
         fontFamily: "Raleway",
       }}
     >
+      <Construction />
       <Container
         maxWidth="xl"
         sx={{
@@ -61,16 +63,17 @@ function NavBar() {
           margin: "auto",
         }}
       >
-        <Toolbar disableGutters sx={{ justifyContent: "space-between" }}>
+        <Toolbar disableGutters sx={{ justifyContent: { xs: "start", md: "space-between" } }}>
           {/* Logo */}
-          <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Box sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}>
             <Image
               src={Logo}
               alt="Logo"
-              width={100}
-              height={100}
               style={{
                 borderRadius: "50%",
+                scale: 3,
+                width: "40px",
+                height: "auto"
               }}
             />
           </Box>
@@ -87,23 +90,23 @@ function NavBar() {
               }}
             >
               <Box display="flex" alignSelf="self-end">
-                {pages.map((page,index) => (
+                {pages.map((page, index) => (
                   <Link key={index} href={page.link} passHref style={{
-                    textDecoration : "none"
+                    textDecoration: "none"
                   }} >
-                  <Button
-                    sx={{
-                      color: "white",
-                      display: "block",
-                      mx: 2,
-                      fontSize: "11px",
-                      textTransform: "none",
-                      fontFamily: "Raleway",
-                    }}
-                  >
-                    {page.name}
-                  </Button>
-                </Link>
+                    <Button
+                      sx={{
+                        color: "white",
+                        display: "block",
+                        mx: 2,
+                        fontSize: "11px",
+                        textTransform: "none",
+                        fontFamily: "Raleway",
+                      }}
+                    >
+                      {page.name}
+                    </Button>
+                  </Link>
                 ))}
               </Box>
             </Box>
@@ -130,63 +133,104 @@ function NavBar() {
               <MenuIcon />
             </IconButton>
             <Drawer
-              anchor="right"
+              anchor="left"
               open={drawerOpen}
               onClose={() => setDrawerOpen(false)}
               sx={{
                 zIndex: 1300,
                 "& .MuiDrawer-paper": {
-                  width: "100vw",
+                  width: "60vw",
                   backgroundColor: "primary.main",
                   color: "white",
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
-                  justifyContent: "center",
+                  justifyContent: "space-between",
                 },
               }}
             >
+              <Box sx={{ display: "flex", width: "100%" }}>
               <IconButton
-                onClick={() => setDrawerOpen(false)}
-                sx={{ position: "absolute", top: 16, right: 16 }}
-              >
-                <CloseIcon sx={{ color: "white" }} />
-              </IconButton>
-              {pages.map((page,index) => (
-                <Link key={index} href={page.link} passHref 
-                style={{
-                  textDecoration : "none"
-                }} 
+                  onClick={() => setDrawerOpen(false)}
+                // sx={{ position: "absolute", top: 16, right: 16 }}
                 >
-                <Button
-                  sx={{
-                    color: "white",
-                    display: "block",
-                    mx: 2,
-                    fontSize: "11px",
-                    textTransform: "none",
-                    fontFamily: "Raleway",
-                  }}
-                >
-                  {page.name}
-                </Button>
-              </Link>
-              ))}
-              <MenuItem>
-                <MainLink
-                  icon={<PhoneIcon sx={{ mr: 1 }} />}
-                  linkContent="PK: +92 334 1436311"
-                  linkHref="tel:+923341436311"
-                />
-              </MenuItem>
-              <MenuItem>
-                <MainLink
-                  icon={<EmailIcon sx={{ mr: 1 }} />}
-                  linkContent="deenguidanceinstitute@gmail.com"
-                  linkHref="mailto:deenguidanceinstitute@gmail.com"
-                />
-              </MenuItem>
+                  <CloseIcon sx={{ color: "white" }} />
+                </IconButton>
+                <Box sx={{
+                  display: { xs: "flex", md: "none" },
+                  alignItems: "center", justifyContent: "center",
+                  width: "100%"
+                }}>
+                  <Image
+                    src={Logo}
+                    alt="Logo"
+                    width={60}
+                    height={60}
+                    style={{
+                      marginTop: 2,
+                      scale: 1.4,
+                      borderRadius: "50%",
+                    }}
+                  />
+                </Box>
+                
+              </Box>
+              <Box>
+                {pages.map((page, index) => (
+                  <Link key={index} href={page.link} passHref
+                    style={{
+                      textDecoration: "none"
+                    }}
+                  >
+                    <Button
+                      sx={{
+                        color: "white",
+                        display: "block",
+                        mx: 2,
+                        fontSize: "11px",
+                        textTransform: "none",
+                        fontFamily: "Raleway",
+                      }}
+                    >
+                      {page.name}
+                    </Button>
+                  </Link>
+                ))}
+              </Box>
+              <Box>
+                <MenuItem>
+                  <MainLink
+                    icon={<PhoneIcon sx={{ mr: 1 }} />}
+                    linkContent="PK: +92 334 1436311"
+                    linkHref="tel:+923341436311"
+                  />
+                </MenuItem>
+                <MenuItem>
+                  <MainLink
+                    icon={<EmailIcon sx={{ mr: 1 }} />}
+                    linkContent="deenguidanceinstitute@gmail.com"
+                    linkHref="mailto:deenguidanceinstitute@gmail.com"
+                  />
+                </MenuItem>
+              </Box>
             </Drawer>
+          </Box>{/* Logo */}
+          <Box sx={{
+            display: { xs: "flex", md: "none" },
+            alignItems: "center", justifyContent: "center",
+            width: "100%"
+          }}>
+            <Image
+              src={Logo}
+              alt="Logo"
+              width={60}
+              height={60}
+              style={{
+                marginTop: 2,
+                scale: 1.4,
+                borderRadius: "50%",
+              }}
+            />
           </Box>
         </Toolbar>
       </Container>
