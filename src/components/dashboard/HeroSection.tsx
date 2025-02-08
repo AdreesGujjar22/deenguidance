@@ -2,8 +2,8 @@
 import React from "react";
 import { Box, Typography, Container } from "@mui/material";
 import Image from "next/image";
-import PersonImage from "../../../../public/images/HeroSectionImage.png";
-import MainButton from "../../../components/MainButton";
+import PersonImage from "../../../public/images/HeroSectionImage.png";
+import MainButton from "../common/MainButton";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 
 const HeroSection: React.FC = () => {

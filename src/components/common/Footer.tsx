@@ -8,9 +8,9 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import Image from 'next/image';
-import Logo from "../../public/images/logo.png";
-import MainButton from "../components/MainButton";
-import MainLink from "../components/MainLink";
+import Logo from "../../../public/images/logo.png";
+import MainButton from "./MainButton";
+import MainLink from "./MainLink";
 import NextLink from 'next/link';
 const Footer: React.FC = () => {
   return (
