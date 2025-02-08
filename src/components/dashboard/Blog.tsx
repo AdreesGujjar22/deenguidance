@@ -35,7 +35,7 @@ const BlogSection: React.FC = () => {
         {blogPosts.map((post, index) => (
           <Grid item xs={12} sm={6} md={3} key={index}>
             <Card sx={{ borderRadius: 3, boxShadow: 3 }}>
-              <CardMedia component="img" height="160" image={blog1} alt={post.title} />
+              <CardMedia component="img" height="160" image={`${blog1}`} alt={post.title} />
               <CardContent>
                 <Typography variant="h6" fontWeight="bold">
                   {post.title}

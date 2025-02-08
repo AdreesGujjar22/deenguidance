@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { Box, Typography, Button, Avatar, Grid, Card, CardContent, Divider } from "@mui/material";
 import HeroImage from "../../../public/images/HeroSectionImage.png";
+import { StaticImageData } from 'next/image';
 
 interface CourseCardProps {
   image: StaticImageData;

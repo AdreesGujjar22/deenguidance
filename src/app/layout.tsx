@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href={Logo} type="image/icon" />
+        <link rel="icon" href={`${Logo}`} type="image/icon" />
       </head>
       <body>
         {/* Google Analytics Script */}
