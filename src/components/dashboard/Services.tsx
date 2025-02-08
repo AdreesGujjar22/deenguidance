@@ -2,7 +2,7 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
-import ServiceCard from "../../../components/ServiceCard";
+import ServiceCard from "../common/ServiceCard";
 import BookIcon from "@mui/icons-material/Book";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import ImportContactsIcon from "@mui/icons-material/ImportContacts";

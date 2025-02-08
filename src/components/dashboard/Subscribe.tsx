@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box, Typography, TextField, Snackbar, useTheme, useMediaQuery } from "@mui/material";
-import MainButton from "../../../components/MainButton";
+import MainButton from "../common/MainButton";
 import SendIcon from '@mui/icons-material/Send';
 
 const SubscribeComponent: React.FC = () => {

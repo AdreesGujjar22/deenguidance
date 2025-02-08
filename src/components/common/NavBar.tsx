@@ -16,14 +16,14 @@ import {
 } from "@mui/icons-material";
 import {Typography,AppBar,Box,Toolbar,IconButton , Drawer , Container , Button} from "@mui/material";
 import Image from "next/image";
-import Logo from "../../public/images/logo.png";
-import MainButton from "../components/MainButton";
-import Construction from "../components/Construction";
-import MainLink from "../components/MainLink";
+import Logo from "../../../public/images/logo.png";
+import MainButton from "./MainButton";
+import Construction from "./Construction";
+import MainLink from "./MainLink";
 import Link from "next/link";
 
 const pages = [
-  { name: "Home", link: "/dashboard", icon: <HomeIcon /> },
+  { name: "Home", link: "/", icon: <HomeIcon /> },
   // { name: "Blogs", link: "/blogs", icon: <ArticleIcon /> },
   { name: "Contact Us", link: "/contactus", icon: <PhoneIcon /> },
 ];
@@ -111,6 +111,7 @@ function NavBar() {
               icon={<ScheduleIcon sx={{ mr: "5px" }} />}
               endIcon={<ArrowDropDownIcon />}
             />
+            {/* <div id="google_translate_element"></div> */}
           </Box>
 
           {/*For mobile */}
