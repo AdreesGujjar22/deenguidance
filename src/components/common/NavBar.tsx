@@ -1,26 +1,40 @@
 "use client";
 import * as React from "react";
-import { 
+import {
   Home as HomeIcon,
-  Menu as MenuIcon, 
-  Email as EmailIcon, 
-  Phone as PhoneIcon, 
+  Menu as MenuIcon,
+  Email as EmailIcon,
+  Phone as PhoneIcon,
   // Article as ArticleIcon,
-  Facebook as FacebookIcon, 
+  Facebook as FacebookIcon,
   LinkedIn as LinkedInIcon,
-  Schedule as ScheduleIcon, 
+  Schedule as ScheduleIcon,
   Instagram as InstagramIcon,
-  ArrowBack as ArrowBackIcon, 
-  LocationOn as LocationOnIcon , 
+  ArrowBack as ArrowBackIcon,
+  LocationOn as LocationOnIcon,
   ArrowDropDown as ArrowDropDownIcon,
 } from "@mui/icons-material";
-import {Typography,AppBar,Box,Toolbar,IconButton , Drawer , Container , Button} from "@mui/material";
+import {
+  Typography,
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Drawer,
+  Container,
+  Button,
+  Menu,
+  MenuItem,
+  CircularProgress,
+} from "@mui/material";
 import Image from "next/image";
 import Logo from "../../../public/images/logo.png";
 import MainButton from "./MainButton";
 import Construction from "./Construction";
 import MainLink from "./MainLink";
 import Link from "next/link";
+import ReactFlagsSelect from "react-flags-select";
+import {PrayerTimes} from "../../types/NavBar"
 
 const pages = [
   { name: "Home", link: "/", icon: <HomeIcon /> },
@@ -30,6 +44,43 @@ const pages = [
 
 function NavBar() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const [selectedCountry, setSelectedCountry] = React.useState("PK"); // Default Pakistan
+  const [prayerTimes, setPrayerTimes] = React.useState<PrayerTimes | null>(null);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [loading, setLoading] = React.useState(false);
+
+  // Handle Namaz Button Click
+  const handleNamazClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+    fetchPrayerTimes("pakistan"); // Default fetch for Pakistan
+  };
+
+  // Close Dropdown
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  // Fetch Namaz Timings
+  const fetchPrayerTimes = async (country: string) => {
+    setLoading(true);
+    try {
+      const response = await fetch(`https://muslimsalat.com/${country}.json`);
+      const data = await response.json();
+      if (data.status_code === 1) {
+        setPrayerTimes(data.items[0]);
+      }
+    } catch (error) {
+      console.error("Error fetching prayer times:", error);
+    }
+    setLoading(false);
+  };
+
+  // Handle Country Change
+  const handleCountryChange = (code: string) => {
+    console.log(" ---- ",code);
+    setSelectedCountry(code);
+    fetchPrayerTimes(code.toLowerCase());
+  };
 
   return (
     <AppBar
@@ -48,24 +99,30 @@ function NavBar() {
           margin: "auto",
         }}
       >
-        <Toolbar disableGutters sx={{ justifyContent: { xs: "start", md: "space-between" } }}>
+        <Toolbar
+          disableGutters
+          sx={{ justifyContent: { xs: "start", md: "space-between" } }}
+        >
           {/* Items for desktop */}
-          <Box sx={{
-            display: {
-              xs: "none", md: "flex",
-              width: "30px",
-              height: "auto",
-            },
-            alignItems: "center"
-          }}>
+          <Box
+            sx={{
+              display: {
+                xs: "none",
+                md: "flex",
+                width: "30px",
+                height: "auto",
+              },
+              alignItems: "center",
+            }}
+          >
             <Image
               src={Logo}
               alt="Logo"
               style={{
                 borderRadius: "50%",
-                width : "100%",
-                height : "100%",
-                scale :3.5
+                width: "100%",
+                height: "100%",
+                scale: 3.5,
               }}
             />
           </Box>
@@ -79,13 +136,19 @@ function NavBar() {
                 width: "80%",
               }}
             >
-              <Box display="flex" alignSelf="self-end" sx={{justifyContent : "space-between"}}>
+              <Box
+                display="flex"
+                alignSelf="self-end"
+                sx={{ justifyContent: "space-between" }}
+              >
                 {pages.map((page, index) => (
-                  <Link key={index} href={page.link} passHref
+                  <Link
+                    key={index}
+                    href={page.link}
+                    passHref
                     style={{
-                      textDecoration: "none"
+                      textDecoration: "none",
                     }}
-
                   >
                     <Button
                       sx={{
@@ -104,13 +167,40 @@ function NavBar() {
               </Box>
             </Box>
           </Box>
-          <Box sx={{display: { xs: "none", md: "flex" } }}>
-          <MainButton
-              content="Nimaz Timings"
+          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <MainButton
+              content="Namaz Timings"
               fs="12px"
               icon={<ScheduleIcon sx={{ mr: "5px" }} />}
               endIcon={<ArrowDropDownIcon />}
+              onClick={handleNamazClick}
             />
+             <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose} sx={{ mt: 1}}>
+              <MenuItem>
+                <ReactFlagsSelect selected={selectedCountry} onSelect={handleCountryChange} searchable />
+              </MenuItem>
+              <MenuItem disabled>
+                <Typography variant="subtitle2" sx={{ fontWeight: "bold", textAlign: "center", width: "100%" }}>
+                  Prayer Times
+                </Typography>
+              </MenuItem>
+              {loading ? (
+                <MenuItem>
+                  <CircularProgress size={24} sx={{ margin: "auto" }} />
+                </MenuItem>
+              ) : prayerTimes ? (
+                <>
+                  <MenuItem>Fajr: {prayerTimes.fajr}</MenuItem>
+                  <MenuItem>Dhuhr: {prayerTimes.dhuhr}</MenuItem>
+                  <MenuItem>Asr: {prayerTimes.asr}</MenuItem>
+                  <MenuItem>Maghrib: {prayerTimes.maghrib}</MenuItem>
+                  <MenuItem>Isha: {prayerTimes.isha}</MenuItem>
+                </>
+              ) : (
+                <MenuItem>No Data Available</MenuItem>
+              )}
+            </Menu>
+
             {/* <div id="google_translate_element"></div> */}
           </Box>
 
@@ -176,7 +266,12 @@ function NavBar() {
               {/* Navigation Items */}
               <Box sx={{ flexGrow: 1, mt: 2 }}>
                 {pages.map((page, index) => (
-                  <Link key={index} href={page.link} passHref style={{ textDecoration: "none" }}>
+                  <Link
+                    key={index}
+                    href={page.link}
+                    passHref
+                    style={{ textDecoration: "none" }}
+                  >
                     <Button
                       startIcon={page.icon}
                       sx={{
@@ -200,10 +295,21 @@ function NavBar() {
               </Box>
 
               {/* Contact Section */}
-              <Box sx={{ mt: 2, borderTop: "1px solid rgba(255, 255, 255, 0.1)", pt: 2 }}>
+              <Box
+                sx={{
+                  mt: 2,
+                  borderTop: "1px solid rgba(255, 255, 255, 0.1)",
+                  pt: 2,
+                }}
+              >
                 <Typography
                   variant="h2"
-                  sx={{ fontWeight: 400, fontSize: "15px", mb: 2, letterSpacing: "3px" }}
+                  sx={{
+                    fontWeight: 400,
+                    fontSize: "15px",
+                    mb: 2,
+                    letterSpacing: "3px",
+                  }}
                 >
                   CONTACT INFO
                 </Typography>
@@ -220,13 +326,22 @@ function NavBar() {
                     linkHref="https://maps.app.goo.gl/thCtQKjCkAmTUjZM9"
                   />
                 </Box>
-                <Box sx={{ display: "flex", gap: 2, justifyContent: "center", alignItems: "center", mt: 2 }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    gap: 2,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    mt: 2,
+                  }}
+                >
                   <Link
                     href="mailto:deenguidanceinstitute@gmail.com"
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{
-                      color: "white", transition: "transform 0.3s, color 0.3s"
+                      color: "white",
+                      transition: "transform 0.3s, color 0.3s",
                     }}
                   >
                     <EmailIcon />
@@ -236,7 +351,8 @@ function NavBar() {
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{
-                      color: "white", transition: "transform 0.3s, color 0.3s",
+                      color: "white",
+                      transition: "transform 0.3s, color 0.3s",
                       // "&:hover": {
                       //   color: "rgba(200,200,200,1)",
                       // },
@@ -249,7 +365,8 @@ function NavBar() {
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{
-                      color: "white", transition: "transform 0.3s, color 0.3s",
+                      color: "white",
+                      transition: "transform 0.3s, color 0.3s",
                       // "&:hover": {
                       //   color: "rgba(200,200,200,1)",
                       // },
@@ -262,7 +379,8 @@ function NavBar() {
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{
-                      color: "white", transition: "transform 0.3s, color 0.3s",
+                      color: "white",
+                      transition: "transform 0.3s, color 0.3s",
                       // "&:hover": {
                       //   color: "rgba(200,200,200,1)",
                       // },
@@ -274,11 +392,14 @@ function NavBar() {
               </Box>
             </Drawer>
           </Box>
-          <Box sx={{
-            display: { xs: "flex", md: "none" },
-            alignItems: "center", justifyContent: "center",
-            width: "100%"
-          }}>
+          <Box
+            sx={{
+              display: { xs: "flex", md: "none" },
+              alignItems: "center",
+              justifyContent: "center",
+              width: "100%",
+            }}
+          >
             <Image
               src={Logo}
               alt="Logo"

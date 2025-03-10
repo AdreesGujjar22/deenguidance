@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import { Button, Box, Dialog, DialogContent, IconButton, Typography } from "@mui/material";
+import { Button, Box, Dialog, DialogContent, IconButton, Typography, ButtonProps } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
-interface MainButtonProps {
+interface MainButtonProps extends ButtonProps {
   content: string;
   icon?: React.ReactNode;
   fs?: string;
@@ -16,27 +16,26 @@ const MainButton: React.FC<MainButtonProps> = ({
   icon,
   fs = "18px",
   endIcon,
-  videoUrl = "", 
+  videoUrl = "",
+  onClick,
+  ...rest
 }) => {
   const [open, setOpen] = useState(false);
 
-  const handleOpen = () => {
-    if (videoUrl) setOpen(true);
-    else console.warn("No video URL provided for MainButton.");
+  const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (videoUrl) {
+      setOpen(true);
+    }
+    if (onClick) {
+      onClick(event);
+    }
   };
 
   const handleClose = () => setOpen(false);
 
   return (
     <>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "auto",
-        }}
-      >
+      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "auto" }}>
         <Box
           sx={{
             position: "relative",
@@ -48,6 +47,7 @@ const MainButton: React.FC<MainButtonProps> = ({
           }}
         >
           <Button
+            {...rest}
             sx={{
               px: { xs: 2, md: 3 },
               py: { xs: 1, md: 1.2 },
@@ -58,6 +58,7 @@ const MainButton: React.FC<MainButtonProps> = ({
               textTransform: "none",
               color: "white",
               boxShadow: "0px 4px 6px secondary.main",
+              ...rest.sx,
             }}
             onClick={handleOpen}
             aria-label={`Open video: ${content}`}
@@ -132,15 +133,7 @@ const MainButton: React.FC<MainButtonProps> = ({
               title="YouTube video"
             ></iframe>
           ) : (
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                height: "100%",
-                backgroundColor: "black",
-              }}
-            >
+            <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%", backgroundColor: "black" }}>
               <Typography color="white" variant="h6">
                 No video URL provided
               </Typography>
