@@ -1,32 +1,44 @@
-import type { Metadata } from "next";
-import { ThemeProvider } from "@mui/material/styles";
-import theme from "../styles/theme";
-import "../styles/global.css";
-import "./page.module.css";
-import NavBar from "../components/common/NavBar";
-import Footer from "../components/common/Footer";
-import Logo from "../../public/images/logo.png";
-import Script from "next/script";
+'use client';
 
-export const metadata: Metadata = {
-  title: "Deen Guidance",
-  description: "Deen Guidance Institute",
-};
+import { Box } from '@mui/material';
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
+import { Inter, Cinzel_Decorative } from 'next/font/google';
+import Script from 'next/script';
+import { Toaster } from 'react-hot-toast';
+import ThemeRegistry from '@/components/providers/ThemeRegistry';
+import MainLayout from '@/components/layout/MainLayout';
+import Navbar from '@/components/common/NavBar';
+import Footer from '@/components/common/Footer';
+import { APP_CONFIG } from '@/data/constants';
+import '@/styles/global.css';
+
+const inter = Inter({ 
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
+
+const cinzelDecorative = Cinzel_Decorative({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['400', '700', '900'],
+  variable: '--font-cinzel-decorative',
+});
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${inter.variable} ${cinzelDecorative.variable}`}>
       <head>
-        <link rel="icon" href={`${Logo}`} type="image/icon" />
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
       </head>
-      <body>
+      <body className={inter.className}>
         {/* Google Analytics Script */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-S88MDCJXFG"
+          src={`https://www.googletagmanager.com/gtag/js?id=${APP_CONFIG.googleAnalyticsId}`}
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -34,27 +46,48 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-S88MDCJXFG');
+            gtag('config', '${APP_CONFIG.googleAnalyticsId}');
           `}
         </Script>
 
-        {/* Google Translate Widget */}
-        <Script
-          src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-          strategy="afterInteractive"
-        />
-        <Script id="google-translate-init" strategy="afterInteractive">
-          {`
-            function googleTranslateElementInit() {
-              new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-            }
-          `}
-        </Script>
-        <ThemeProvider theme={theme}>
-          <NavBar />
-          {children}
-          <Footer />
-        </ThemeProvider>
+        <AppRouterCacheProvider>
+          <ThemeRegistry>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                minHeight: '100vh',
+              }}
+            >
+              <Navbar />
+              <MainLayout>
+                {children}
+              </MainLayout>
+              <Footer />
+            </Box>
+            <Toaster 
+              position="top-center"
+              toastOptions={{
+                duration: 4000,
+                style: {
+                  background: '#333',
+                  color: '#fff',
+                  fontFamily: 'var(--font-inter)',
+                },
+                success: {
+                  style: {
+                    background: '#004d40',
+                  },
+                },
+                error: {
+                  style: {
+                    background: '#d32f2f',
+                  },
+                },
+              }}
+            />
+          </ThemeRegistry>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );

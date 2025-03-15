@@ -1,20 +1,53 @@
+'use client';
+
 import React, { useState } from "react";
-import { Box, Typography, TextField, Snackbar, useTheme, useMediaQuery } from "@mui/material";
-import MainButton from "../common/MainButton";
+import { Box, Typography, TextField, useTheme, useMediaQuery } from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
+import emailjs from '@emailjs/browser';
+import toast from 'react-hot-toast';
+import MainButton from "../common/MainButton";
 
 const SubscribeComponent: React.FC = () => {
   const [email, setEmail] = useState("");
-  const [showMessage, setShowMessage] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const handleSubscribe = () => {
-    setShowMessage(true);
-    setTimeout(() => {
-      setShowMessage(false);
-    }, 2000);
+  const handleSubscribe = async () => {
+    if (!email) {
+      toast.error('Please enter your email address');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_NEWSLETTER_TEMPLATE_ID;
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error('EmailJS credentials are not properly configured');
+      }
+
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          subscriber_email: email,
+          subscription_date: new Date().toLocaleDateString(),
+        },
+        publicKey
+      );
+
+      toast.success('Successfully subscribed to newsletter!');
+      setEmail('');
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Failed to subscribe';
+      toast.error(errorMessage);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -55,12 +88,12 @@ const SubscribeComponent: React.FC = () => {
 
         {/* Title Section */}
         <Typography
-          variant="h1"
+          variant="h4"
           sx={{
             fontWeight: "bold",
             fontSize: isMobile ? "20px" : "28px",
             zIndex: 2,
-            lineHeight : "35px",
+            lineHeight: "35px",
             marginBottom: "16px",
           }}
         >
@@ -68,11 +101,11 @@ const SubscribeComponent: React.FC = () => {
         </Typography>
         <Typography
           sx={{
-            fontFamily :"Raleway",
+            fontFamily: "Raleway",
             fontSize: isMobile ? "13px" : "15px",
             marginBottom: "16px",
             zIndex: 2,
-            lineHeight : "20px",
+            lineHeight: "20px",
             opacity: 0.9,
           }}
         >
@@ -81,6 +114,11 @@ const SubscribeComponent: React.FC = () => {
 
         {/* Input and Button Section */}
         <Box
+          component="form"
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSubscribe();
+          }}
           sx={{
             zIndex: 2,
           }}
@@ -88,8 +126,11 @@ const SubscribeComponent: React.FC = () => {
           <TextField
             variant="outlined"
             placeholder="Enter your email"
+            type="email"
+            required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            disabled={loading}
             InputProps={{
               sx: {
                 fontSize: "14px",
@@ -119,20 +160,13 @@ const SubscribeComponent: React.FC = () => {
               },
             }}
           />
-          <Box onClick={handleSubscribe}>
-            <MainButton content="Subscribe" endIcon={<SendIcon sx={{ ml: 1 }} />} />
-          </Box>
+          <MainButton
+            type="submit"
+            disabled={loading}
+            content={loading ? "Subscribing..." : "Subscribe"}
+            endIcon={<SendIcon sx={{ ml: 1 }} />}
+          />
         </Box>
-
-        {/* Snackbar for Success Message */}
-        <Snackbar
-          open={showMessage}
-          message="Thank you! You have subscribed."
-          anchorOrigin={{ vertical: "top", horizontal: "center" }}
-          sx={{
-            zIndex: 3,
-          }}
-        />
       </Box>
     </Box>
   );

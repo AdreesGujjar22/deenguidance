@@ -1,0 +1,31 @@
+export const SITE_METADATA = {
+  name: "Deen Guidance",
+  title: "Learn Quran Online with Tajweed – Affordable Quran Courses",
+  description: "Join our interactive classes to Learn Quran Online with Tajweed and master Quran recitation with expert tutors. Affordable, flexible, and personalized Quran learning experience.",
+  siteUrl: "https://deenguidance.com",
+  author: "Deen Guidance",
+  socialLinks: {
+    twitter: "@deenguidance",
+    facebook: "deenguidance",
+    instagram: "deenguidance",
+  },
+  contact: {
+    email: "info@deenguidance.com",
+    phone: "+923341436311",
+    whatsapp: "+923341436311",
+  },
+  keywords: [
+    "learn quran online",
+    "tajweed classes",
+    "quran recitation",
+    "online quran tutor",
+    "islamic studies",
+    "arabic language",
+    "quran memorization",
+    "online quran academy",
+    "quran learning",
+    "tajweed rules",
+    "quran teaching",
+    "islamic education",
+  ],
+};

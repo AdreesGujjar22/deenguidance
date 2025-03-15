@@ -77,7 +77,6 @@ function NavBar() {
 
   // Handle Country Change
   const handleCountryChange = (code: string) => {
-    console.log(" ---- ",code);
     setSelectedCountry(code);
     fetchPrayerTimes(code.toLowerCase());
   };

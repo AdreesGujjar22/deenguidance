@@ -19,7 +19,7 @@ const HeroSection: React.FC = () => {
         flexDirection: { xs: "column", md: "row" },
         position: "relative",
         overflow: "hidden",
-        paddingX: { xs: "20px", sm: "40px" },
+        // paddingX: { xs: "20px", sm: "40px" },
         paddingY: "135px",
         gap: { xs: "20px", md: "40px" },
       }}

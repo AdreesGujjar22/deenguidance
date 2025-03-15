@@ -3,6 +3,7 @@ import HeroImage from "../../public/images/HeroSectionImage.png";
 
 const courseData: CourseCardProps[] = [
     {
+        id: "quran-intermediate",
         image: HeroImage,
         tutorName: "Habib Al Noor",
         tutorRole: "Arabic Scholar",
@@ -13,6 +14,7 @@ const courseData: CourseCardProps[] = [
         enrollCount: "50 Enrolled",
     },
     {
+        id: "advanced-tajweed",
         image: HeroImage,
         tutorName: "Habib Al Noor",
         tutorRole: "Arabic Scholar",
