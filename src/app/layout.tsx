@@ -10,7 +10,11 @@ import MainLayout from '@/components/layout/MainLayout';
 import Navbar from '@/components/common/NavBar';
 import Footer from '@/components/common/Footer';
 import { APP_CONFIG } from '@/data/constants';
+import seoConfig from '@/config/next-seo.config';
 import '@/styles/global.css';
+import dynamic from 'next/dynamic';
+
+const DynamicDefaultSeo = dynamic(() => import('next-seo').then(mod => mod.DefaultSeo), { ssr: false });
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -35,6 +39,7 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </head>
+      <DynamicDefaultSeo {...seoConfig} />
       <body className={inter.className}>
         {/* Google Analytics Script */}
         <Script
