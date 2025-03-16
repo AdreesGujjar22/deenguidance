@@ -35,11 +35,9 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
         <title>Learn Quran Online with Tajweed – Affordable Quran Courses</title>
-        <meta name="description" content="Join our interactive classes to Learn Quran Online with Tajweed and master Quran recitation with expert tutors. Affordable, flexible, and personalized Quran learning experience." />
+        <meta name="description" content="Join expert-led classes and Learn Quran Online with Tajweed for perfect pronunciation and fluency. Start your Quran learning journey today!" />
         <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png" />
-
-
       </head>
       <body className={inter.className}>
         {/* Google Analytics Script */}
