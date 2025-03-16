@@ -10,13 +10,9 @@ import MainLayout from '@/components/layout/MainLayout';
 import Navbar from '@/components/common/NavBar';
 import Footer from '@/components/common/Footer';
 import { APP_CONFIG } from '@/data/constants';
-import seoConfig from '@/config/next-seo.config';
 import '@/styles/global.css';
-import dynamic from 'next/dynamic';
 
-const DynamicDefaultSeo = dynamic(() => import('next-seo').then(mod => mod.DefaultSeo), { ssr: false });
-
-const inter = Inter({ 
+const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-inter',
@@ -38,8 +34,13 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${cinzelDecorative.variable}`}>
       <head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
+        <title>Learn Quran Online with Tajweed – Affordable Quran Courses</title>
+        <meta name="description" content="Join our interactive classes to Learn Quran Online with Tajweed and master Quran recitation with expert tutors. Affordable, flexible, and personalized Quran learning experience." />
+        <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png" />
+
+
       </head>
-      <DynamicDefaultSeo {...seoConfig} />
       <body className={inter.className}>
         {/* Google Analytics Script */}
         <Script
@@ -70,7 +71,7 @@ export default function RootLayout({
               </MainLayout>
               <Footer />
             </Box>
-            <Toaster 
+            <Toaster
               position="top-center"
               toastOptions={{
                 duration: 4000,

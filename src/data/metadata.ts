@@ -2,7 +2,7 @@ export const SITE_METADATA = {
   name: "Deen Guidance",
   title: "Learn Quran Online with Tajweed – Affordable Quran Courses",
   description: "Join our interactive classes to Learn Quran Online with Tajweed and master Quran recitation with expert tutors. Affordable, flexible, and personalized Quran learning experience.",
-  siteUrl: "https://deenguidance.com",
+  siteUrl: "http://localhost:3000",
   author: "Deen Guidance",
   socialLinks: {
     twitter: "@deenguidance",
