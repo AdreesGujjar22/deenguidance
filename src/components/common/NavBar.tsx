@@ -5,7 +5,7 @@ import {
   Menu as MenuIcon,
   Email as EmailIcon,
   Phone as PhoneIcon,
-  // Article as ArticleIcon,
+  Article as ArticleIcon,
   Facebook as FacebookIcon,
   LinkedIn as LinkedInIcon,
   Schedule as ScheduleIcon,
@@ -38,7 +38,7 @@ import {PrayerTimes} from "../../types/NavBar"
 
 const pages = [
   { name: "Home", link: "/", icon: <HomeIcon /> },
-  // { name: "Blogs", link: "/blogs", icon: <ArticleIcon /> },
+  { name: "Blogs", link: "/blogs", icon: <ArticleIcon /> },
   { name: "Contact Us", link: "/contactus", icon: <PhoneIcon /> },
 ];
 
@@ -49,10 +49,9 @@ function NavBar() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [loading, setLoading] = React.useState(false);
 
-  // Handle Namaz Button Click
   const handleNamazClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
-    fetchPrayerTimes("pakistan"); // Default fetch for Pakistan
+    fetchPrayerTimes("pakistan");
   };
 
   // Close Dropdown

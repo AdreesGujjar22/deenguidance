@@ -10,7 +10,7 @@ import WhatsAppButton from '../components/common/WhatsAppButton';
 
 const DashBoard = () => {
   return (
-    <Box component="main">
+    <Box>
       <HeroSection />
       <Services />
       <Course />

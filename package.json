@@ -17,6 +17,7 @@
     "@mui/material": "^6.2.1",
     "@mui/material-nextjs": "^6.2.1",
     "@mui/styles": "^6.2.1",
+    "jodit-react": "^5.2.15",
     "next": "^15.1.7",
     "next-seo": "^6.6.0",
     "react": "^19.0.0",
