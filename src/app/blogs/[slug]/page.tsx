@@ -8,46 +8,99 @@ import {
   Card,
   CardContent,
   Stack,
+  CircularProgress,
 } from "@mui/material";
-import BlogData from "@/data/blogs/BlogData";
-import { BlogItem } from "@/types/Blog";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
+
+interface BlogItem {
+  _id: string;
+  title: string;
+  slug: string;
+  description: string;
+  content: string;
+  image: string;
+}
 
 const BlogComponent = () => {
-  const { id } = useParams();
-  const [content, setContent] = useState<BlogItem>({
-    id: 0,
-    title: "",
-    description: "",
-    image: "",
-  });
+  const { slug } = useParams();
+  const router = useRouter();
+  const [content, setContent] = useState<BlogItem | null>(null);
+  const [allBlogs, setAllBlogs] = useState<BlogItem[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (id) {
-      const blog = BlogData.find((item) => item.id === Number(id));
-      if (blog) setContent(blog);
-    }
-  }, [id]);
+    if (!slug) return;
+
+    // Fetch current blog based on slug
+    const fetchBlog = async () => {
+      try {
+        const res = await fetch(`/api/blog/${slug}`);
+        if (!res.ok) {
+          setContent(null);
+        } else {
+          const data = await res.json();
+          setContent(data);
+        }
+      } catch (error) {
+        console.error("Error fetching blog:", error);
+        setContent(null);
+      }
+    };
+
+    // Fetch all blogs for navigation
+    const fetchAllBlogs = async () => {
+      try {
+        const res = await fetch(`/api/blog/list`);
+        const data = await res.json();
+        setAllBlogs(data);
+      } catch (error) {
+        console.error("Error fetching all blogs:", error);
+      }
+    };
+
+    Promise.all([fetchBlog(), fetchAllBlogs()]).finally(() => {
+      setLoading(false);
+    });
+  }, [slug]);
 
   const handleNavigation = (direction: "prev" | "next") => {
-    if (!id) return;
-    const currentId = Number(id);
-    const newId = direction === "prev" ? currentId - 1 : currentId + 1;
-    const blogExists = BlogData.some((item) => item.id === newId);
-  
-    if (blogExists) {
-      window.location.href = `/blogs/${newId}`;
+    if (!content || allBlogs.length === 0) return;
+    const index = allBlogs.findIndex((blog) => blog.slug === content.slug);
+    let newIndex = index;
+    if (direction === "prev") {
+      newIndex = index - 1;
+    } else {
+      newIndex = index + 1;
+    }
+    if (newIndex >= 0 && newIndex < allBlogs.length) {
+      router.push(`/blogs/${allBlogs[newIndex].slug}`);
     }
   };
 
-  if (!content) return <Typography>Loading...</Typography>;  
+  if (loading) {
+    return (
+      <Box sx={{ display: "flex", justifyContent: "center", mt: 8 }}>
+        <CircularProgress />
+      </Box>
+    );
+  }
+
+  if (!content) {
+    return (
+      <Container disableGutters maxWidth={false}>
+        <Typography variant="h4" align="center" sx={{ mt: 8 }}>
+          Blog not found.
+        </Typography>
+      </Container>
+    );
+  }
 
   return (
     <Container disableGutters maxWidth={false}>
       {/* Hero Section */}
       <Box
         sx={{
-          backgroundImage: `url(${content?.image})`,
+          backgroundImage: `url(${process.env.NEXT_PUBLIC_APP_URL}${content.image})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           height: { xs: "50vh", md: "70vh" },
@@ -79,7 +132,7 @@ const BlogComponent = () => {
               mb: 2,
             }}
           >
-            {content?.title}
+            {content.title}
           </Typography>
         </Box>
       </Box>
@@ -104,7 +157,7 @@ const BlogComponent = () => {
                 mb: 4,
               }}
             >
-              {content?.title}
+              {content.title}
             </Typography>
             <Box
               sx={{
@@ -112,7 +165,7 @@ const BlogComponent = () => {
                 lineHeight: 1.8,
                 color: "#444",
               }}
-              dangerouslySetInnerHTML={{ __html: content?.description }}
+              dangerouslySetInnerHTML={{ __html: content.content }}
             />
           </CardContent>
         </Card>

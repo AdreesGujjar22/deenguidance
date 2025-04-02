@@ -9,16 +9,12 @@ import {
 } from "@mui/material";
 import { BlogItem } from "@/types/Blog";
 
-const BlogCard: React.FC<BlogItem> = ({ id , title, description, image }) => {
+const BlogCard: React.FC<BlogItem> = ({ _id, title, description, image }) => {
   return (
     <Box
       sx={{
         display: "flex",
         justifyContent: "center",
-        ":hover": {
-          boxShadow: "1px 1px 10px grey",
-          borderRadius: '16px'
-        }
       }}
     >
       <Card
@@ -26,16 +22,21 @@ const BlogCard: React.FC<BlogItem> = ({ id , title, description, image }) => {
           width: { xs: "100%", sm: "350px" },
           display: "flex",
           flexDirection: "column",
+          boxShadow: "1px 1px 5px grey",
+          borderRadius: '16px',
+          ":hover": {
+            boxShadow: "1px 1px 10px grey",
+          }
         }}
         elevation={3}
       >
-        <CardActionArea sx={{ flexGrow: 1 }}>
+        <CardActionArea sx={{ flexGrow: 2 }} >
           {/* Card Image */}
           <CardMedia
             component="img"
             height="200"
             image={image}
-            alt={title}
+            alt={`${title}-${_id}`}
           />
           {/* Card Content */}
           <CardContent>
@@ -50,7 +51,7 @@ const BlogCard: React.FC<BlogItem> = ({ id , title, description, image }) => {
                 WebkitBoxOrient: "vertical",
                 WebkitLineClamp: 2,
                 overflow: "hidden",
-                lineHeight: 1.5 , 
+                lineHeight: 1.5,
               }}
             >
               {title}
@@ -63,7 +64,7 @@ const BlogCard: React.FC<BlogItem> = ({ id , title, description, image }) => {
                 WebkitBoxOrient: "vertical",
                 WebkitLineClamp: 2,
                 overflow: "hidden",
-                pt:1
+                pt: 1
               }}
             >
               {description}

@@ -1,6 +1,7 @@
 export interface BlogItem {
-  id: number;
+  _id: string;
   title: string;
+  slug: string;
   description: string;
   image: string;
 }

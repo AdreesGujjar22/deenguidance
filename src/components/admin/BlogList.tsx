@@ -1,13 +1,68 @@
-"use client"
-import { Box, Button, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
+"use client";
+import React, { useEffect, useState } from "react";
+import {
+  Box,
+  Button,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  Typography,
+  CircularProgress,
+} from "@mui/material";
 import BlogTableRow from "../../components/admin/BlogTableRow";
 
-const sampleBlogs = [
-  { id: "1", title: "The Power of Mindfulness", image: "https://via.placeholder.com/100x60", tags: ["Wellness"] },
-  { id: "2", title: "Future of Renewable Energy", image: "https://via.placeholder.com/100x60", tags: ["Technology"] },
-];
+interface Blog {
+  _id: string;
+  title: string;
+  image: string;
+  tags: string[];
+  slug: string; 
+}
 
 export default function BlogList() {
+  const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>("");
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const res = await fetch("/api/blog/list");
+        if (!res.ok) {
+          throw new Error("Failed to fetch blogs");
+        }
+        const data = await res.json();
+        setBlogs(data);
+      } catch (err) {
+        console.error("Error : ",err);
+        setError("Error fetching blogs");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlogs();
+  }, []);
+
+  if (loading) {
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center" minHeight="300px">
+        <CircularProgress />
+      </Box>
+    );
+  }
+
+  if (error) {
+    return (
+      <Typography variant="h6" color="error" align="center" sx={{ mt: 2 }}>
+        {error}
+      </Typography>
+    );
+  }
+
   return (
     <Paper sx={{ p: 2 }}>
       <Box display="flex" justifyContent="space-between" mb={2}>
@@ -25,8 +80,8 @@ export default function BlogList() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {sampleBlogs.map((blog) => (
-            <BlogTableRow key={blog.id} blog={blog} />
+          {blogs.map((blog) => (
+            <BlogTableRow key={blog._id} blog={blog} />
           ))}
         </TableBody>
       </Table>
