@@ -8,8 +8,9 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import DeleteModal from "./DeleteModal";
 import Button from "../ui/atoms/Button";
+import { BlogItem } from "../../types/Blog";
 
-export default function BlogTableRow({ blog }) {
+const BlogTableRow: React.FC<BlogItem> = ({  _id,slug, title })=> {
 
   const router = useRouter();
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
@@ -18,7 +19,7 @@ export default function BlogTableRow({ blog }) {
   const handleDelete = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`/api/blog/delete/${blog.slug}`, {
+      const res = await fetch(`/api/blog/delete/${slug}`, {
         method: "DELETE",
       });
       if (!res.ok) {
@@ -37,13 +38,13 @@ export default function BlogTableRow({ blog }) {
   return (
     <>
       <TableRow>
-        <TableCell>{blog.id}</TableCell>
-        <TableCell>{blog.title}</TableCell>
+        <TableCell>{_id}</TableCell>
+        <TableCell>{title}</TableCell>
         <TableCell align="right">
-          <IconButton onClick={() => router.push(`/admin/edit/${blog.slug}`)}>
+          <IconButton onClick={() => router.push(`/admin/edit/${slug}`)}>
             <EditIcon />
           </IconButton>
-          <IconButton onClick={() => router.push(`/blogs/${blog.slug}`)}>
+          <IconButton onClick={() => router.push(`/blogs/${slug}`)}>
             <VisibilityIcon />
           </IconButton>
           <IconButton>
@@ -67,3 +68,5 @@ export default function BlogTableRow({ blog }) {
     </>
   );
 }
+
+export default BlogTableRow;

@@ -49,7 +49,7 @@ export default function CreateBlogForm() {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
-      router.push("/admin");
+      if (typeof window !== 'undefined') return router.push("/admin");
     } catch (err) {
       if (axios.isAxiosError(err)) {
         setError(err.response?.data?.error || "Failed to create blog");
@@ -65,7 +65,9 @@ export default function CreateBlogForm() {
     <Paper sx={{ p: 2 }}>
       <Box mb={2} display="flex" justifyContent="space-between">
         <Typography variant="h6">Create New Blog</Typography>
-        <Button variant="outlined" onClick={() => router.push("/admin")}>
+        <Button variant="outlined" onClick={() => {
+          if (typeof window !== 'undefined') return router.push("/admin");
+        }}>
           Back
         </Button>
       </Box>

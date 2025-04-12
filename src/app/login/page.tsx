@@ -20,8 +20,10 @@ export default function LoginPage() {
       const res = await axios.post("/api/login", { email, password });
 
       if (res.data.token) {
-        localStorage.setItem("token", res.data.token);
+        if (typeof window !== "undefined") {
+          localStorage.setItem("token", res.data.token);
         router.push("/admin");
+        }
       }
     } catch (err) {
       if (axios.isAxiosError(err)) {

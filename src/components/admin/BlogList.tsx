@@ -13,17 +13,18 @@ import {
   CircularProgress,
 } from "@mui/material";
 import BlogTableRow from "../../components/admin/BlogTableRow";
+import { BlogItem } from "../../types/Blog";
 
-interface Blog {
-  _id: string;
-  title: string;
-  image: string;
-  tags: string[];
-  slug: string; 
-}
+// interface Blog {
+//   _id: string;
+//   title: string;
+//   image: string;
+//   tags: string[];
+//   slug: string; 
+// }
 
 export default function BlogList() {
-  const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [blogs, setBlogs] = useState<BlogItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
 
@@ -81,7 +82,9 @@ export default function BlogList() {
         </TableHead>
         <TableBody>
           {blogs.map((blog) => (
-            <BlogTableRow key={blog._id} blog={blog} />
+            <Box key={blog._id}>
+              <BlogTableRow _id={blog._id} slug={blog.slug} title={blog.title} image={blog.image} description={blog.description} />
+            </Box>
           ))}
         </TableBody>
       </Table>
