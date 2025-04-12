@@ -22,7 +22,7 @@ export default function MainLayout({
         minHeight: '100vh',
         width: '100%',
         py: isMobile ? 2 : 4,
-        px: isMobile ? 1 : 0,
+        px: isMobile ? 0 : 0,
       }}
     >
       {children}

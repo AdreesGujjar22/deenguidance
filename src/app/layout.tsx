@@ -11,6 +11,7 @@ import Navbar from '@/components/common/NavBar';
 import Footer from '@/components/common/Footer';
 import { APP_CONFIG } from '@/data/constants';
 import '@/styles/global.css';
+import { usePathname } from 'next/navigation';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -30,6 +31,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // Get current pathname using next/navigation hook.
+  const pathname = usePathname();
+  // Assume admin routes are under /admin, adjust as needed.
+  const isAdminRoute = pathname.startsWith('/admin');
+
   return (
     <html lang="en" className={`${inter.variable} ${cinzelDecorative.variable}`}>
       <head>
@@ -64,11 +70,18 @@ export default function RootLayout({
                 minHeight: '100vh',
               }}
             >
-              <Navbar />
-              <MainLayout>
-                {children}
-              </MainLayout>
-              <Footer />
+              {/* Render Navbar, MainLayout, and Footer only for non-admin routes */}
+              {isAdminRoute ? (
+                children
+              ) : (
+                <>
+                  <Navbar />
+                  <MainLayout>
+                    {children}
+                  </MainLayout>
+                  <Footer />
+                </>
+              )}
             </Box>
             <Toaster
               position="top-center"
