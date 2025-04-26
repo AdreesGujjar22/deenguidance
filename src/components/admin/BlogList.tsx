@@ -15,14 +15,6 @@ import {
 import BlogTableRow from "../../components/admin/BlogTableRow";
 import { BlogItem } from "../../types/Blog";
 
-// interface Blog {
-//   _id: string;
-//   title: string;
-//   image: string;
-//   tags: string[];
-//   slug: string; 
-// }
-
 export default function BlogList() {
   const [blogs, setBlogs] = useState<BlogItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);

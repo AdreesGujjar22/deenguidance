@@ -29,9 +29,8 @@ const BlogComponent = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!slug) return;
+    if (!slug || slug === "undefined") return;
 
-    // Fetch current blog based on slug
     const fetchBlog = async () => {
       try {
         const res = await fetch(`/api/blog/${slug}`);
