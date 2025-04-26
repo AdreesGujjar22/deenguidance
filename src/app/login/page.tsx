@@ -22,7 +22,7 @@ export default function LoginPage() {
       if (res.data.token) {
         if (typeof window !== "undefined") {
           localStorage.setItem("token", res.data.token);
-        router.push("/admin");
+          router.push("/admin");
         }
       }
     } catch (err) {

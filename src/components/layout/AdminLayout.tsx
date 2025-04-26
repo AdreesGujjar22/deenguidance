@@ -6,7 +6,7 @@ import Sidebar from "../../components/admin/Sidebar";
 import Topbar from "../../components/admin/Topbar";
 
 const drawerWidth = 240;
-const topbarHeight = 64; // Set a consistent height for Topbar
+const topbarHeight = 64;
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const [mobileOpen, setMobileOpen] = useState(false);

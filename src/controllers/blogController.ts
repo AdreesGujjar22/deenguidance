@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/db";
 import Blog from "@/models/Blog";
 import { nanoid } from "nanoid";
+import fs from "fs";
 
 export async function createBlog(req: Request) {
   await connectDB();
@@ -24,14 +25,13 @@ export async function createBlog(req: Request) {
   const imagePath = `${uploadDir}/${Date.now()}-${imageFile.name}`;
 
   // Ensure the uploads directory exists
-  // const fs = require("fs");
-  // if (!fs.existsSync(uploadDir)) {
-    // fs.mkdirSync(uploadDir, { recursive: true }); // Create the directory if it doesn't exist
-  // }
+  if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+  }
 
   // Write the file to the uploads folder
-  // const buffer = await imageFile.arrayBuffer();
-  // fs.writeFileSync(imagePath, Buffer.from(buffer));
+  const buffer = await imageFile.arrayBuffer();
+  fs.writeFileSync(imagePath, Buffer.from(buffer));
 
   const blog = await Blog.create({
     title,

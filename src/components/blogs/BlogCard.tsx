@@ -36,6 +36,7 @@ const BlogCard: React.FC<BlogItem> = ({ _id, title, description, image }) => {
             component="img"
             height="200"
             image={image}
+            // image={`/uploads/1743533065638-0a068f2b93304dee8961c0fbcf46f0e3.jpg`}
             alt={`${title}-${_id}`}
           />
           {/* Card Content */}

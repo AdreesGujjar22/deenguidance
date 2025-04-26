@@ -1,12 +1,5 @@
-// import { getBlogBySlug } from "@/controllers/blogController";
+import { getBlogBySlug } from "@/controllers/blogController";
 
-// export async function GET(req: Request, context: { params: { slug: string } }) {
-//   return getBlogBySlug(req, context);
-// } 
-
-
-import { createBlog } from "@/controllers/blogController";
-
-export async function POST(req: Request) {
-  return createBlog(req);
-}
+export async function GET(req: Request, context: { params: { slug: string } }) {
+  return getBlogBySlug(req, context);
+} 
