@@ -1,0 +1,8 @@
+# Allow all user-agents to crawl everything
+User-agent: *
+Disallow: /signin
+Disallow: /admin
+Allow: /
+
+# You can also point to your sitemap
+Sitemap: https://deenguidance.com/sitemap.xml
