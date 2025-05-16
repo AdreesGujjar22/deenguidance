@@ -30,7 +30,6 @@ import {
 import Image from "next/image";
 import Logo from "../../../public/images/web-logo.png";
 import MainButton from "./MainButton";
-import Construction from "./Construction";
 import MainLink from "./MainLink";
 import Link from "next/link";
 import ReactFlagsSelect from "react-flags-select";
@@ -89,7 +88,6 @@ function NavBar() {
         fontFamily: "Raleway",
       }}
     >
-      <Construction />
       <Container
         maxWidth="xl"
         sx={{
