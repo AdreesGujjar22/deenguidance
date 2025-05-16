@@ -1,8 +1,7 @@
-import { StaticImageData } from 'next/image'; 
 
 export interface CourseCardProps {
   id?: string;
-  image: StaticImageData;
+  image: string;
   tutorName: string;
   tutorRole: string;
   courseTitle: string;

@@ -38,6 +38,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
           transform: "translateY(-8px)",
           boxShadow: 8,
         },
+        height : "500px"
       }}
     >
       {/* Image Section */}
@@ -50,12 +51,10 @@ const CourseCard: React.FC<CourseCardProps> = ({
           sx={{
             display: "flex",
             alignItems: "center",
-            gap: 2,
+            gap: 1,
             backgroundColor: "primary.main",
             color: "primary.contrastText",
             borderRadius: "50px",
-            px: 3,
-            py: 1,
             position: "relative",
             top: -40,
             boxShadow: 3,
@@ -63,10 +62,10 @@ const CourseCard: React.FC<CourseCardProps> = ({
         >
           <Avatar alt={tutorName} src="/tutor.jpg" sx={{ width: 50, height: 50 }} />
           <Box sx={{ textAlign: "left" }}>
-            <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
+            <Typography variant="body2" sx={{ fontWeight: "bold" }}>
               {tutorName}
             </Typography>
-            <Typography variant="body2" sx={{ opacity: 0.8 }}>
+            <Typography sx={{ opacity: 0.8 , fontSize : "13px" }}>
               {tutorRole}
             </Typography>
           </Box>
@@ -76,8 +75,6 @@ const CourseCard: React.FC<CourseCardProps> = ({
         <Typography
           variant="h6"
           sx={{
-            fontFamily: "var(--font-cinzel)",
-            fontWeight: 700,
             mt: -2,
             mb: 1,
           }}
@@ -106,6 +103,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
             px: 2,
             py: 1,
             backgroundColor: "secondary.main",
+            color : "white",
             borderRadius: "12px",
             boxShadow: 2,
           }}
@@ -118,7 +116,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
             {enrollCount}
           </Typography>
         </Box>
-        <Box sx={{ marginTop: 2 }}>
+        <Box sx={{ marginTop: 4 }}>
           <MainButton 
             content="Enroll Now" 
             endIcon={<ArrowForward />} 

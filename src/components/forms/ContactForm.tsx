@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { TextField, Box, Grid } from '@mui/material';
+import { TextField, Box, Grid, MenuItem } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import emailjs from '@emailjs/browser';
 import toast from 'react-hot-toast';
@@ -10,7 +10,7 @@ import MainButton from '../common/MainButton';
 
 const StyledForm = styled('form')(({ theme }) => ({
   width: '100%',
-  maxWidth: '600px',
+  maxWidth: '700px',
   margin: '0 auto',
   padding: theme.spacing(3),
   [theme.breakpoints.down('sm')]: {
@@ -18,15 +18,39 @@ const StyledForm = styled('form')(({ theme }) => ({
   },
 }));
 
-const initialFormData: ContactFormData = {
+const initialFormData: ContactFormData & {
+  source?: string;
+  purpose?: string;
+  phone?: string;
+} = {
   name: '',
   email: '',
   subject: '',
   message: '',
+  source: '',
+  purpose: '',
+  phone: '',
 };
 
+const sourceOptions = [
+  'Facebook',
+  'Instagram',
+  'LinkedIn',
+  'Google',
+  'Friend or Colleague',
+  'Other',
+];
+
+const purposeOptions = [
+  'Course Enrollment',
+  'To Learn About Islam',
+  'To Know More About Our Website',
+  'General Inquiry',
+  'Other',
+];
+
 export default function ContactForm({ onSuccess, onError, className }: FormProps) {
-  const [formData, setFormData] = useState<ContactFormData>(initialFormData);
+  const [formData, setFormData] = useState(initialFormData);
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -38,11 +62,11 @@ export default function ContactForm({ onSuccess, onError, className }: FormProps
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    console.log("sub ---- ");
     e.preventDefault();
     setLoading(true);
 
     try {
-      // Replace these with your actual EmailJS credentials from .env.local
       const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
       const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
       const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
@@ -59,6 +83,9 @@ export default function ContactForm({ onSuccess, onError, className }: FormProps
           from_email: formData.email,
           subject: formData.subject,
           message: formData.message,
+          source: formData.source || 'Not specified',
+          purpose: formData.purpose || 'Not specified',
+          phone: formData.phone || 'Not provided',
         },
         publicKey
       );
@@ -103,6 +130,54 @@ export default function ContactForm({ onSuccess, onError, className }: FormProps
             disabled={loading}
           />
         </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            fullWidth
+            label="Phone (Optional)"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            variant="outlined"
+            disabled={loading}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            select
+            fullWidth
+            label="How did you hear about us?"
+            name="source"
+            value={formData.source}
+            onChange={handleChange}
+            variant="outlined"
+            disabled={loading}
+          >
+            {sourceOptions.map((option) => (
+              <MenuItem key={option} value={option}>
+                {option}
+              </MenuItem>
+            ))}
+          </TextField>
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            select
+            required
+            fullWidth
+            label="Purpose of Contact"
+            name="purpose"
+            value={formData.purpose}
+            onChange={handleChange}
+            variant="outlined"
+            disabled={loading}
+          >
+            {purposeOptions.map((option) => (
+              <MenuItem key={option} value={option}>
+                {option}
+              </MenuItem>
+            ))}
+          </TextField>
+        </Grid>
         <Grid item xs={12}>
           <TextField
             required
@@ -131,9 +206,10 @@ export default function ContactForm({ onSuccess, onError, className }: FormProps
         </Grid>
         <Grid item xs={12}>
           <Box display="flex" justifyContent="flex-end">
-            <MainButton 
-            content={loading ? 'Sending...' : 'Send Message'}
-            disabled={loading}
+            <MainButton
+              content={loading ? 'Sending...' : 'Send Message'}
+              disabled={loading}
+              type="submit"
             />
           </Box>
         </Grid>

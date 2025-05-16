@@ -8,6 +8,8 @@ interface MainButtonProps extends ButtonProps {
   icon?: React.ReactNode;
   fs?: string;
   endIcon?: React.ReactNode;
+  bgColor?: string;
+  textColor?: string;
   videoUrl?: string;
 }
 
@@ -18,6 +20,8 @@ const MainButton: React.FC<MainButtonProps> = ({
   endIcon,
   videoUrl = "",
   onClick,
+  bgColor="secondary.main",
+  textColor="white",
   ...rest
 }) => {
   const [open, setOpen] = useState(false);
@@ -54,9 +58,9 @@ const MainButton: React.FC<MainButtonProps> = ({
               borderRadius: "30px",
               fontSize: { xs: "11px", md: fs },
               fontWeight: "bold",
-              backgroundColor: "secondary.main",
+              backgroundColor: bgColor,
               textTransform: "none",
-              color: "white",
+              color: textColor,
               boxShadow: "0px 4px 6px secondary.main",
               ...rest.sx,
             }}
