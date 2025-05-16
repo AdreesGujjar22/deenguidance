@@ -38,11 +38,8 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${cinzelDecorative.variable}`}>
       <head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
-        <title>Learn Quran Online with Tajweed – Affordable Quran Courses</title>
-        <meta name="description" content="Join expert-led classes and Learn Quran Online with Tajweed for perfect pronunciation and fluency. Start your Quran learning journey today!" />
         <link rel="icon" type="image/png" sizes="32x32" href="/images/web-favicon.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/images/web-favicon.png" />
-        <link rel="canonical" href="https://www.deenguidance.com/contactus" />
       </head>
       <body className={inter.className}>
         {/* Google Analytics Script */}
