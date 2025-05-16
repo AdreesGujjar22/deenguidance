@@ -14,7 +14,7 @@ const seoConfig = {
     description: SITE_METADATA.description,
     images: [
       {
-        url: `${SITE_METADATA.siteUrl}/images/logo.png`,
+        url: `${SITE_METADATA.siteUrl}/images/web-logo.png`,
         width: 1200,
         height: 630,
         alt: `${SITE_METADATA.name} - Learn Quran Online`,

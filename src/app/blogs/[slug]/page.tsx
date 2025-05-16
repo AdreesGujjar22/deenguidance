@@ -11,21 +11,14 @@ import {
   CircularProgress,
 } from "@mui/material";
 import { useParams, useRouter } from "next/navigation";
-
-interface BlogItem {
-  _id: string;
-  title: string;
-  slug: string;
-  description: string;
-  content: string;
-  image: string;
-}
+import BlogData from "@/data/blogs/BlogData";
+import { BlogItem } from "@/types/Blog";
+import HeroBanner from "@/components/common/HeroBanner";
 
 const BlogComponent = () => {
   const { slug } = useParams();
   const router = useRouter();
-  const [content, setContent] = useState<BlogItem | null>(null);
-  const [allBlogs, setAllBlogs] = useState<BlogItem[]>([]);
+  const [content, setContent] = useState<BlogItem |null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -33,52 +26,56 @@ const BlogComponent = () => {
 
     const fetchBlog = async () => {
       try {
-        const res = await fetch(`/api/blog/${slug}`);
-        if (!res.ok) {
-          setContent(null);
-        } else {
-          const data = await res.json();
-          setContent(data);
+        setLoading(true)
+        const findBlog = BlogData?.find((item)=>{
+          return item.slug == slug;
+        })
+        if (findBlog) {
+          return setContent(findBlog);
         }
+        // const res = await fetch(`/api/blog/${slug}`);
+        // if (!res.ok) {
+        //   setContent(null);
+        // } else {
+        //   const data = await res.json();
+        //   setContent(data);
+        // }
       } catch (error) {
         console.error("Error fetching blog:", error);
         setContent(null);
+      } finally{
+        setLoading(false)
       }
     };
-
-    // Fetch all blogs for navigation
-    const fetchAllBlogs = async () => {
-      try {
-        const res = await fetch(`/api/blog/list`);
-        const data = await res.json();
-        setAllBlogs(data);
-      } catch (error) {
-        console.error("Error fetching all blogs:", error);
-      }
-    };
-
-    Promise.all([fetchBlog(), fetchAllBlogs()]).finally(() => {
-      setLoading(false);
-    });
+    fetchBlog();
   }, [slug]);
 
   const handleNavigation = (direction: "prev" | "next") => {
-    if (!content || allBlogs.length === 0) return;
-    const index = allBlogs.findIndex((blog) => blog.slug === content.slug);
+    
+    if (!content || BlogData.length === 0) return;
+    const index = BlogData.findIndex((blog) => blog.slug === content.slug);
     let newIndex = index;
     if (direction === "prev") {
-      newIndex = index - 1;
+      const findPrev = BlogData[index-1];
+      if (findPrev.slug) {
+        router.push(`/blogs/${findPrev?.slug}`);
+        newIndex = index - 1;
+      }
     } else {
-      newIndex = index + 1;
+      const findPrev = BlogData[index+1];
+      if (findPrev.slug) {
+        router.push(`/blogs/${findPrev.slug}`);
+      newIndex = index+1;
+      }
     }
-    if (newIndex >= 0 && newIndex < allBlogs.length) {
-      router.push(`/blogs/${allBlogs[newIndex].slug}`);
+    if (newIndex >= 0 && newIndex < BlogData.length) {
+      router.push(`/blogs/${BlogData[newIndex].slug}`);
     }
   };
 
   if (loading) {
     return (
-      <Box sx={{ display: "flex", justifyContent: "center", mt: 8 }}>
+      <Box sx={{ display: "flex", justifyContent: "center", mt: 20 }}>
         <CircularProgress />
       </Box>
     );
@@ -87,7 +84,7 @@ const BlogComponent = () => {
   if (!content) {
     return (
       <Container disableGutters maxWidth={false}>
-        <Typography variant="h4" align="center" sx={{ mt: 8 }}>
+        <Typography variant="h4" align="center" sx={{ mt: 20 }}>
           Blog not found.
         </Typography>
       </Container>
@@ -97,52 +94,18 @@ const BlogComponent = () => {
   return (
     <Container disableGutters maxWidth={false}>
       {/* Hero Section */}
-      <Box
-        sx={{
-          backgroundImage: `url(${process.env.NEXT_PUBLIC_APP_URL}${content.image})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          height: { xs: "50vh", md: "70vh" },
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          textAlign: "center",
-          position: "relative",
-          "&::before": {
-            content: '""',
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            backgroundColor: "rgba(0, 0, 0, 0.6)",
-          },
-        }}
-      >
-        <Box position="relative" zIndex={1} px={2}>
-          <Typography
-            variant="h1"
-            sx={{
-              color: "white",
-              fontSize: { xs: "1.8rem", md: "2.5rem" },
-              fontWeight: 700,
-              lineHeight: 1.2,
-              textTransform: "uppercase",
-              mb: 2,
-            }}
-          >
-            {content.title}
-          </Typography>
-        </Box>
-      </Box>
+
+      <HeroBanner title={content?.title} bgImage={content?.image} />
 
       {/* Blog Content */}
-      <Container maxWidth="md" sx={{ py: 8 }}>
+      <Container maxWidth="lg" sx={{ py: 8 }}>
         <Card
           sx={{
-            borderRadius: 2,
-            boxShadow: 3,
+            // borderRadius: 2,
+            boxShadow: "none",
             borderBottom: "2px solid #004d40",
+            backgroundColor : "transparent",
+            px : 1,
             mb: 4,
           }}
         >

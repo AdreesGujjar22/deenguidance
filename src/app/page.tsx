@@ -3,18 +3,18 @@ import React from 'react';
 import { Box } from '@mui/material';
 import HeroSection from '../components/dashboard/HeroSection';
 import Services from '../components/dashboard/Services';
-import Course from '../components/dashboard/Course';
 import Qoutes from '../components/dashboard/Qoutes';
 import Subscribe from '../components/dashboard/Subscribe';
 import WhatsAppButton from '../components/common/WhatsAppButton';
+import FAQAccordion from '@/components/dashboard/FAQAccordion';
 
 const DashBoard = () => {
   return (
     <Box>
       <HeroSection />
-      <Services />
-      <Course />
       <Qoutes />
+      <Services />
+      <FAQAccordion />
       <Subscribe />
       <WhatsAppButton
         phoneNumber="+923341436311"

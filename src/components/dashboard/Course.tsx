@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
-import { Box, Typography, Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import CourseCard from "../common/CourseCard";
 import CourseEnrollmentForm from "../forms/CourseEnrollmentForm";
 import CourseData from "@/data/Course";
+import HeroBanner from "../common/HeroBanner";
 
 export default function CourseSection() {
   const [isEnrollmentOpen, setIsEnrollmentOpen] = useState(false);
@@ -20,27 +21,13 @@ export default function CourseSection() {
     setSelectedCourse("");
   };
 
-  // const courseOptions = CourseData.map((course) => ({
-  //   id: course.courseTitle.toLowerCase().replace(/\s+/g, "-"),
-  //   name: course.courseTitle,
-  // }));
-
   return (
-    <Box sx={{ py: 10, px: { xs: 2, sm: 5 }, textAlign: "center" }}>
+    <Box>
       {/* Title Section */}
-      <Typography
-        variant="h4"
-        fontWeight="bold"
-        sx={{
-          fontFamily: "CinzelDecorative, serif",
-          mb: 4,
-          textTransform: "uppercase",
-        }}
-      >
-        Our Courses
-      </Typography>
+      <HeroBanner title="Our Courses" bgImage="/images/course/bg-course.jpg" />
 
-      {/* Course Grid */}
+      <Box  sx={{ py: 10, px: { xs: 2, sm: 5 }, textAlign: "center" }}>
+        {/* Course Grid */}
       <Grid container spacing={4} justifyContent="center">
         {CourseData.map((course, index) => (
           <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
@@ -48,6 +35,7 @@ export default function CourseSection() {
           </Grid>
         ))}
       </Grid>
+      </Box>
 
       {/* Enrollment Form Modal */}
       <CourseEnrollmentForm

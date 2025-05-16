@@ -58,7 +58,7 @@ const CourseEnrollmentForm: React.FC<CourseEnrollmentFormProps> = ({
     try {
       const response = await emailjs.send(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-        process.env.NEXT_PUBLIC_EMAILJS_COURSE_TEMPLATE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
         templateParams,
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
       );
@@ -209,7 +209,8 @@ const CourseEnrollmentForm: React.FC<CourseEnrollmentFormProps> = ({
           content="Cancel"
           onClick={onClose}
           variant="outlined"
-          color="primary"
+          textColor="black"
+          bgColor="white"
         />
         <MainButton
           content="Submit"

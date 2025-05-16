@@ -34,7 +34,7 @@ const Blogs: React.FC = () => {
         <Grid container spacing={4}>
           {BlogData.map((blog, index) => (
             <div key={index}>
-                <BlogCard _id={blog._id} slug={blog.slug} title={blog.title} description={blog.description} image={blog.image} />
+                <BlogCard _id={blog._id} slug={blog.slug} title={blog.title} description={blog.description} image={blog.image} content={blog?.content} />
             </div>
           ))}
         </Grid>

@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import {
-  Home as HomeIcon,
+  School as SchoolIcon,
   Menu as MenuIcon,
   Email as EmailIcon,
   Phone as PhoneIcon,
@@ -28,16 +28,15 @@ import {
   CircularProgress,
 } from "@mui/material";
 import Image from "next/image";
-import Logo from "../../../public/images/logo.png";
+import Logo from "../../../public/images/web-logo.png";
 import MainButton from "./MainButton";
-import Construction from "./Construction";
 import MainLink from "./MainLink";
 import Link from "next/link";
 import ReactFlagsSelect from "react-flags-select";
-import {PrayerTimes} from "../../types/NavBar"
+import { PrayerTimes } from "../../types/NavBar"
 
 const pages = [
-  { name: "Home", link: "/", icon: <HomeIcon /> },
+  { name: "Courses", link: "/courses", icon: <SchoolIcon /> },
   { name: "Blogs", link: "/blogs", icon: <ArticleIcon /> },
   { name: "Contact Us", link: "/contactus", icon: <PhoneIcon /> },
 ];
@@ -89,7 +88,6 @@ function NavBar() {
         fontFamily: "Raleway",
       }}
     >
-      <Construction />
       <Container
         maxWidth="xl"
         sx={{
@@ -113,16 +111,22 @@ function NavBar() {
               alignItems: "center",
             }}
           >
-            <Image
-              src={Logo}
-              alt="Logo"
+            <Link
+              href="/"
               style={{
-                borderRadius: "50%",
-                width: "100%",
-                height: "100%",
-                scale: 3.5,
+                textDecoration: "none",
               }}
-            />
+            >
+              <Image
+                src={Logo}
+                alt="Logo"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  scale: 2,
+                }}
+              />
+            </Link>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <Box
@@ -173,7 +177,7 @@ function NavBar() {
               endIcon={<ArrowDropDownIcon />}
               onClick={handleNamazClick}
             />
-             <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose} sx={{ mt: 1}}>
+            <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose} sx={{ mt: 1 }}>
               <MenuItem>
                 <ReactFlagsSelect selected={selectedCountry} onSelect={handleCountryChange} searchable />
               </MenuItem>
@@ -254,10 +258,6 @@ function NavBar() {
                   alt="Logo"
                   width={60}
                   height={60}
-                  style={{
-                    scale: 2,
-                    borderRadius: "50%",
-                  }}
                 />
               </Box>
 
@@ -405,8 +405,7 @@ function NavBar() {
               height={60}
               style={{
                 marginTop: 2,
-                scale: 1.4,
-                borderRadius: "50%",
+                scale: 0.8,
               }}
             />
           </Box>

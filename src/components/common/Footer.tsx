@@ -8,7 +8,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import Image from 'next/image';
-import Logo from "../../../public/images/logo.png";
+import Logo from "../../../public/images/web-logo.png";
 import MainButton from "./MainButton";
 import MainLink from "./MainLink";
 import NextLink from 'next/link';
@@ -60,7 +60,6 @@ const Footer: React.FC = () => {
         <Grid item xs={12} md={4}>
           <Box
             sx={{
-              backgroundColor: "white",
               display: "inline-block",
               borderRadius: "50%",
             }}
@@ -76,10 +75,6 @@ const Footer: React.FC = () => {
                 alt="Logo"
                 width={100}
                 height={100}
-                style={{
-                  borderRadius: "50%",
-                  objectFit: "cover",
-                }}
               />
             </Box>
           </Box>
@@ -121,7 +116,7 @@ const Footer: React.FC = () => {
         }}
       >
         <Typography variant="body2" sx={{ fontSize: "14px", mb: 2 }}>
-          DeenGuidance © Copyright 2024. All Rights Reserved.
+          DeenGuidance © Copyright 2025. All Rights Reserved.
         </Typography>
         <Box sx={{ display: "flex", gap: 2, justifyContent: "center", alignItems: "center" }}>
           <Link
