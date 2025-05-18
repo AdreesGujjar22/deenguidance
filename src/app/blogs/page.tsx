@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { BlogItem } from "../../types/Blog";
 import BlogData from "@/data/blogs/BlogData";
 import HeroBanner from "@/components/common/HeroBanner";
-import PageSEO from "@/components/pageseo/PageSEO";
 
 const Blogs: React.FC = () => {
   const router = useRouter();
@@ -75,37 +74,6 @@ const Blogs: React.FC = () => {
   }
 
   return (
-    <>
-    <PageSEO
-    title="Blog — Deen Guidance | Articles on Quran, Islam & Faith"
-    description="Read insightful blog posts on Quranic guidance, Islamic lifestyle, spirituality, parenting, and more. Learn and grow with authentic Islamic knowledge."
-    canonicalUrl="https://www.deenguidance.com/blogs"
-    openGraph={{
-      url: 'https://www.deenguidance.com/blogs',
-      type: 'website',
-      title: 'Blog — Deen Guidance | Articles on Quran, Islam & Faith',
-      description: 'Discover meaningful Islamic blog content: tips on Quran learning, Islamic values, parenting, and modern-day challenges — rooted in the Deen.',
-      image: '/images/blogs/bg-blog.jpg', // Replace with your actual OG image
-      siteName: 'Deen Guidance',
-    }}
-    twitter={{
-      cardType: 'summary_large_image',
-      siteHandle: '@DeenGuidance',
-      creatorHandle: '@DeenGuidance',
-      title: 'Islamic Blog — Quran, Parenting & Spiritual Growth | Deen Guidance',
-      description: 'Explore powerful reflections and practical advice for Muslims worldwide. New blogs weekly on faith, family, and personal growth.',
-      image: '/images/blogs/bg-blog.jpg', // Replace with your Twitter image
-    }}
-    additionalMetaTags={[
-      { name: 'author', content: 'Deen Guidance Team' },
-      { name: 'robots', content: 'index,follow' },
-      {
-        name: 'keywords',
-        content:
-          'Islamic blog, Quran articles, Muslim parenting, Islamic lifestyle, spiritual development, Deen Guidance blog, tafsir blog, Islamic guidance',
-      },
-    ]}
-     />
       <Box>
         <HeroBanner title="Explore our latest insights" bgImage="/images/blogs/bg-blog.jpg" />
         <Container maxWidth="lg">
@@ -136,7 +104,6 @@ const Blogs: React.FC = () => {
           <Pagination count={totalPages} page={page} onChange={handleChange} color="primary" />
         </Box>
       </Box>
-    </>
   );
 };
 
