@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     siteName: 'Deen Guidance',
     images: [
       {
-        url: '/images/web-favicon.png',
+        url: '/images/contact-us/preview-contact-us.PNG',
         width: 1200,
         height: 630,
         alt: 'Deen Guidance Logo',
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     title: 'Contact Us — Deen Guidance',
     description:
       'Need help or info? Contact the Deen Guidance team for fast support and free Quran learning consultations.',
-    images: ['/images/web-favicon.png'],
+    images: ['/images/contact-us/preview-contact-us.PNG'],
   },
 };
 

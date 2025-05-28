@@ -15,33 +15,27 @@ const FAQAccordion: React.FC = () => (
   >
     <Container maxWidth="lg" sx={{ textAlign: 'center' }}>
       <Typography
-        component="h2"
-        variant="h3"
+        variant="h4"
         sx={{
-          fontWeight: 300,
-          mb: 6,
+          fontWeight: "bold",
+          fontFamily: 'CinzelDecorative',
+          color: "#000",
+          letterSpacing: "1px",
+          zIndex: 1,
+          fontSize: { xs: "24px", sm: "28px", md: "32px", lg: "36px" },
         }}
       >
-        Your&nbsp;
-        <Box component="br" sx={{ display: { md: 'none' } }} />
-        Questions&nbsp;
-        <Typography
-          component="span"
-          variant="h3"
-          sx={{ fontWeight: 500 }}
-        >
-          Answered
-        </Typography>
+        Your Questions Answered
       </Typography>
       <Box>
-      {faqItems.map((item, idx) => (
-        <FAQItem
-          key={idx}
-          question={item.question}
-          answer={item.answer}
-          defaultExpanded={item.question === 'What are your guarantees?'}
-        />
-      ))}
+        {faqItems.map((item, idx) => (
+          <FAQItem
+            key={idx}
+            question={item.question}
+            answer={item.answer}
+            defaultExpanded={item.question === 'What are your guarantees?'}
+          />
+        ))}
       </Box>
     </Container>
   </Box>

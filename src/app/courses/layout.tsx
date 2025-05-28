@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: 'Deen Guidance',
     images: [
       {
-        url: '/images/course/bg-course.jpg',
+        url: '/images/course/preview-courses.PNG',
         width: 1200,
         height: 630,
         alt: 'Deen Guidance Courses Banner',
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     title: 'Online Quran & Islamic Courses — Deen Guidance',
     description:
       'Enroll in personalized, flexible online Quran and Islamic studies classes. Explore Tajweed, Tafsir, Hadith, Arabic, and more.',
-    images: ['/images/course/bg-course.jpg'],
+    images: ['/images/course/preview-courses.PNG'],
   },
 };
 

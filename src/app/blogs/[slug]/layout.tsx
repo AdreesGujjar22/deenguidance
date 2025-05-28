@@ -8,7 +8,8 @@ interface Params {
 
 export async function generateMetadata(context: { params: Params }): Promise<Metadata> {
   const { params } = await context;
-  const post = BlogData.find((b) => b.slug === params.slug);
+  const param = await params
+  const post = BlogData.find((b) => b.slug === param.slug);
   if (!post) {
     notFound();
   }

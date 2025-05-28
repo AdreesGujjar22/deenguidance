@@ -23,7 +23,7 @@ const SubscribeComponent: React.FC = () => {
     setLoading(true);
     try {
       const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-      const templateId = process.env.NEXT_PUBLIC_EMAILJS_NEWSLETTER_TEMPLATE_ID;
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
       const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
       if (!serviceId || !templateId || !publicKey) {
@@ -127,7 +127,6 @@ const SubscribeComponent: React.FC = () => {
             variant="outlined"
             placeholder="Enter your email"
             type="email"
-            required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             disabled={loading}

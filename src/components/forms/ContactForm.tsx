@@ -62,7 +62,6 @@ export default function ContactForm({ onSuccess, onError, className }: FormProps
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    console.log("sub ---- ");
     e.preventDefault();
     setLoading(true);
 
