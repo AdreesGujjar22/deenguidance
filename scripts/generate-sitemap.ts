@@ -18,7 +18,7 @@ const staticUrls = [
 
 // 2. Map your blog data
 const blogUrls = blogs.map(({ slug }) => ({
-  loc:   `${SITE_URL}/blog/${slug}`,
+  loc:   `${SITE_URL}/blogs/${slug}`,
   lastmod: new Date().toISOString(),
   priority: 0.7,
 }));
