@@ -1,5 +1,4 @@
-'use client';
-
+import type { Metadata } from 'next';
 import { Box } from '@mui/material';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 import { Inter, Cinzel_Decorative } from 'next/font/google';
@@ -11,7 +10,44 @@ import Navbar from '@/components/common/NavBar';
 import Footer from '@/components/common/Footer';
 import { APP_CONFIG } from '@/data/constants';
 import '@/styles/global.css';
-import { usePathname } from 'next/navigation';
+// import { usePathname } from 'next/navigation';
+
+export const metadata: Metadata = {
+  title: 'Deen Guidance — Online Quran & Islamic Studies',
+  description:
+    'Deen Guidance offers live, interactive online Quran and Islamic Studies courses—beginner to advanced—taught by certified teachers. Try a free demo class today!',
+  alternates: { canonical: 'https://www.deenguidance.com' },
+  keywords: [
+    'Quran', 'Tajweed', 'Tafsir', 'Islamic Studies', 'Online Classes'
+  ],
+  authors: [{ name: 'Deen Guidance Team' }],
+  robots: { index: true, follow: true },
+  openGraph: {
+    url: 'https://www.deenguidance.com',
+    type: 'website',
+  title: 'Deen Guidance — Online Quran & Islamic Studies',
+  description:
+    'Deen Guidance offers live, interactive online Quran and Islamic Studies courses—beginner to advanced—taught by certified teachers. Try a free demo class today!',
+    siteName: 'Deen Guidance',
+    images: [
+      {
+        url: '/images/web-favicon.png',
+        width: 1200,
+        height: 630,
+        alt: 'Deen Guidance Blog Banner',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@DeenGuidance',
+    creator: '@DeenGuidance',
+  title: 'Deen Guidance — Online Quran & Islamic Studies',
+  description:
+    'Deen Guidance offers live, interactive online Quran and Islamic Studies courses—beginner to advanced—taught by certified teachers. Try a free demo class today!',
+    images: ['/images/web-favicon.png'],
+  },
+};
 
 const inter = Inter({
   subsets: ['latin'],
@@ -31,39 +67,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const pathname = usePathname();
-  const isAdminRoute = pathname.startsWith('/admin');
+  // const pathname = usePathname();
+  // const isAdminRoute = pathname.startsWith('/admin');
 
   return (
     <html lang="en" className={`${inter.variable} ${cinzelDecorative.variable}`}>
       <head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
-        <meta name="description" content="Deen Guidance offers live, interactive online Quran and Islamic Studies courses—beginner to advanced—taught by certified teachers. Try a free demo class today!" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/images/web-favicon.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/images/web-favicon.png" />
-        <title>Deen Guidance — Online Quran & Islamic Studies</title>
-        <link rel="canonical" href="https://www.deenguidance.com" />
-
-        {/* Open Graph */}
-        <meta property="og:url" content="https://www.deenguidance.com" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Deen Guidance — Online Quran & Islamic Studies" />
-        <meta property="og:description" content="Live, interactive online Quran and Islamic Studies courses with certified instructors. From Tajweed basics to advanced Tafsir." />
-        <meta property="og:image" content="/images/web-favicon.png" />
-        <meta property="og:site_name" content="Deen Guidance" />
-
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@DeenGuidance" />
-        <meta name="twitter:creator" content="@DeenGuidance" />
-        <meta name="twitter:title" content="Deen Guidance — Online Quran & Islamic Studies" />
-        <meta name="twitter:description" content="Live, interactive online Quran and Islamic Studies courses with certified instructors. From Tajweed basics to advanced Tafsir." />
-        <meta name="twitter:image" content="/images/web-favicon.png" />
-
-        {/* Additional Meta Tags */}
-        <meta name="author" content="Deen Guidance Team" />
-        <meta name="robots" content="index,follow" />
-        <meta name="keywords" content="Quran, Tajweed, Tafsir, Islamic Studies, Online Classes" />
       </head>
       <body className={inter.className}>
         {/* Google Analytics Script */}
@@ -90,9 +100,9 @@ export default function RootLayout({
               }}
             >
               {/* Render Navbar, MainLayout, and Footer only for non-admin routes */}
-              {isAdminRoute ? (
+              {/* {isAdminRoute ? (
                 children
-              ) : (
+              ) : ( */}
                 <>
                   <Navbar />
                   <MainLayout>
@@ -100,7 +110,7 @@ export default function RootLayout({
                   </MainLayout>
                   <Footer />
                 </>
-              )}
+              {/* )} */}
             </Box>
             <Toaster
               position="top-center"
