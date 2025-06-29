@@ -37,8 +37,7 @@ export async function POST(request: NextRequest) {
     const buffer = Buffer.from(arrayBuffer);
     const ext = path.extname(imageBlob.name) || ".jpg";
     const fileName = `${slug}-${uuid()}${ext}`;
-    const imagePath = `/images/blog/${fileName}`;
-    await saveImageToPublic( buffer, fileName);
+    const imagePath =  await saveImageToPublic( buffer, fileName);
 
     // assemble a payload that your controller expects
     const payload = {
