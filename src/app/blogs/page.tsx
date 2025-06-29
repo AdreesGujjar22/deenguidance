@@ -4,7 +4,6 @@ import { Box, Container, Typography, Pagination, CircularProgress } from "@mui/m
 import BlogCard from "@/components/blogs/BlogCard";
 import { useRouter } from "next/navigation";
 import { BlogItem } from "../../types/Blog";
-import BlogData from "@/data/blogs/BlogData";
 import HeroBanner from "@/components/common/HeroBanner";
 
 const Blogs: React.FC = () => {
