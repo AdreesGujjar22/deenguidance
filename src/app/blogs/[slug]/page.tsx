@@ -23,24 +23,27 @@ const BlogComponent = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log("Loading  ...sluf...........")
+    console.log("Loading  ..............")
     if (!slug || slug === "undefined") return;
 
     const fetchBlog = async () => {
       try {
         setLoading(true)
-        const findBlog = BlogData?.find((item) => {
-          return item.slug == slug;
-        })
-        if (findBlog) {
-          return setContent(findBlog);
-        }
-        // const res = await fetch(`/api/blog/${slug}`);
-        // if (!res.ok) {
-        //   setContent(null);
-        // } else {
-        //   const data = await res.json();
-        //   setContent(data);
+        // const findBlog = BlogData?.find((item) => {
+        //   return item.slug == slug;
+        // })
+        // if (findBlog) {
+        //   return setContent(findBlog);
         // }
+        const res = await fetch(`/api/blog/${slug}`);
+        console.log("res : ----------- ",res)
+        if (!res.ok) {
+          setContent(null);
+        } else {
+          const data = await res.json();
+          setContent(data);
+        }
       } catch (error) {
         console.error("Error fetching blog:", error);
         setContent(null);

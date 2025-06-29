@@ -19,9 +19,9 @@ const Blogs: React.FC = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        // const res = await fetch("/api/blog/list");
-        // const data = await res.json();
-        setBlogs(BlogData);
+        const res = await fetch("/api/blog/list");
+        const data = await res.json();
+        setBlogs(data);
       } catch (err) {
         console.log("Error : ", err);
         setError("Failed to fetch blogs");

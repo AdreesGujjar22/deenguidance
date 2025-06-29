@@ -4,16 +4,40 @@ import BlogList from "../../components/admin/BlogList";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Box, CircularProgress } from "@mui/material";
+import { jwtDecode } from "jwt-decode";
+
+type TokenPayload = {
+  userId: string;
+  exp: number;
+};
 
 export default function AdminDashboard() {
   const router = useRouter();
-  const [token, setToken] = useState<string | null>(null);
+  const [token, setToken] = useState<boolean | null>(null);
 
   useEffect(() => {
-    const getToken = localStorage.getItem("token");
-    setToken(getToken);
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router.push("/login");
+      return;
+    }
 
-    if (!getToken) {
+    try {
+      const decoded = jwtDecode<TokenPayload>(token);
+
+      // Check if token is expired
+      const currentTime = Date.now() / 1000;
+      if (decoded.exp < currentTime) {
+        localStorage.removeItem("token");
+        router.push("/login");
+        return;
+      }
+
+      // Token is valid
+      setToken(true);
+    } catch (err) {
+      console.error("Err : ",err)
+      localStorage.removeItem("token");
       router.push("/login");
     }
   }, [router]);

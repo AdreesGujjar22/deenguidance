@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: 'Contact Us — Deen Guidance',
   description:
     "Get in touch with Deen Guidance for inquiries, support, or to schedule your free demo Quran class. We're here to help you on your learning journey.",
-  alternates: { canonical: 'https://www.deenguidance.com/contact' },
+  alternates: { canonical: 'https://www.deenguidance.com/contactus' },
   keywords: [
     'Contact Deen Guidance',
     'Quran support',
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   authors: [{ name: 'Deen Guidance Team' }],
   robots: { index: true, follow: true },
   openGraph: {
-    url: 'https://www.deenguidance.com/contact',
+    url: 'https://www.deenguidance.com/contactus',
     type: 'website',
     title: 'Contact Us — Deen Guidance',
     description:
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     siteName: 'Deen Guidance',
     images: [
       {
-        url: '/images/contact-us/preview-contact-us.PNG',
+        url: '/images/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Deen Guidance Logo',
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     title: 'Contact Us — Deen Guidance',
     description:
       'Need help or info? Contact the Deen Guidance team for fast support and free Quran learning consultations.',
-    images: ['/images/contact-us/preview-contact-us.PNG'],
+    images: ['/images/og-image.png'],
   },
 };
 

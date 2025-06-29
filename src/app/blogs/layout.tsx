@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     siteName: 'Deen Guidance',
     images: [
       {
-        url: '/images/blogs/preview-blogs.PNG',
+        url: '/images/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Deen Guidance Blog Banner',
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     title: 'Islamic Blog — Quran, Parenting & Spiritual Growth | Deen Guidance',
     description:
       'Explore powerful reflections and practical advice for Muslims worldwide. New blogs weekly on faith, family, and personal growth.',
-    images: ['/images/blogs/preview-blogs.PNG'],
+    images: ['/images/og-image.png'],
   },
 };
 

@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     siteName: 'Deen Guidance',
     images: [
       {
-        url: '/images/web-favicon.png',
+        url: '/images/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Deen Guidance Blog Banner',
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   title: 'Deen Guidance — Online Quran & Islamic Studies',
   description:
     'Deen Guidance offers live, interactive online Quran and Islamic Studies courses—beginner to advanced—taught by certified teachers. Try a free demo class today!',
-    images: ['/images/web-favicon.png'],
+    images: ['/images/og-image.png'],
   },
 };
 

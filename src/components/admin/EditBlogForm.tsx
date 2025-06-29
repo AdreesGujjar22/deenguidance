@@ -35,17 +35,18 @@ export default function EditBlogForm() {
           throw new Error("Failed to fetch blog");
         }
         const data = await res.json();
-        setTitle(data.title);
-        setTags(data.tags.join(","));
-        setDescriptionSummary(data.description);
-        setContent(data.content);
+        if (typeof data.title === "string") setTitle(data.title);
+        if (Array.isArray(data.tags)) setTags(data.tags.join(","));
+        if (typeof data.description === "string") setDescriptionSummary(data.description);
+        if (typeof data.content === "string") setContent(data.content);
+        setContent(data?.content);
       } catch (err) {
         if (axios.isAxiosError(err)) {
           setError(err.message);
         } else {
           setError("An unexpected error occurred.");
         }
-        
+
       } finally {
         setLoading(false);
       }

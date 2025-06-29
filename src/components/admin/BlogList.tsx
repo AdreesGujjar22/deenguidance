@@ -1,9 +1,8 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import {
   Box,
   Button,
-  Paper,
   Table,
   TableBody,
   TableCell,
@@ -30,7 +29,7 @@ export default function BlogList() {
         const data = await res.json();
         setBlogs(data);
       } catch (err) {
-        console.error("Error : ",err);
+        console.error(err);
         setError("Error fetching blogs");
       } finally {
         setLoading(false);
@@ -57,29 +56,29 @@ export default function BlogList() {
   }
 
   return (
-    <Paper sx={{ p: 2 }}>
+    <Box>
       <Box display="flex" justifyContent="space-between" mb={2}>
         <Typography variant="h6">Posts</Typography>
         <Button variant="contained" href="/admin/create">
           Create New Blog
         </Button>
       </Box>
-      <Table>
-        <TableHead>
-          <TableRow>
+      <Table sx={{width : "1040px"}}>
+        <TableHead sx={{width : "100%"}}>
+          <TableRow sx={{ width : "100%"}}>
             <TableCell>ID</TableCell>
             <TableCell>Title</TableCell>
-            <TableCell align="right">Actions</TableCell>
+            <TableCell>Actions</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
+        <TableBody sx={{width : "100%"}}>
           {blogs.map((blog) => (
-            <Box key={blog._id}>
+            <Fragment key={blog._id} sx={{width : "100%"}}>
               <BlogTableRow _id={blog._id} slug={blog.slug} title={blog.title} image={blog.image} description={blog.description} />
-            </Box>
+            </Fragment>
           ))}
         </TableBody>
       </Table>
-    </Paper>
+    </Box>
   );
 }

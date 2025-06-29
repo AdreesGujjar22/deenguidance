@@ -27,7 +27,7 @@ export async function generateMetadata(context: { params: Params }): Promise<Met
       siteName: 'Deen Guidance',
       images: [
         {
-          url: post.image,
+          url: '/images/og-image.png',
           alt: post.title,
           width: 1200,
           height: 630,
@@ -38,7 +38,7 @@ export async function generateMetadata(context: { params: Params }): Promise<Met
       card: 'summary_large_image',
       title: post.title,
       description: post.description,
-      images: [post.image],
+      images: ['/images/og-image.png'],
       site: '@DeenGuidance',
       creator: '@DeenGuidance',
     },

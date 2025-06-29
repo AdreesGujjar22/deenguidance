@@ -37,10 +37,10 @@ const BlogTableRow: React.FC<BlogItem> = ({  _id,slug, title })=> {
 
   return (
     <>
-      <TableRow>
+      <TableRow sx={{minWidth : "100%"}}>
         <TableCell>{_id}</TableCell>
         <TableCell>{title}</TableCell>
-        <TableCell align="right">
+        <TableCell>
           <IconButton onClick={() => router.push(`/admin/edit/${slug}`)}>
             <EditIcon />
           </IconButton>
