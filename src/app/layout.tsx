@@ -25,9 +25,9 @@ export const metadata: Metadata = {
   openGraph: {
     url: 'https://www.deenguidance.com',
     type: 'website',
-  title: 'Deen Guidance — Online Quran & Islamic Studies',
-  description:
-    'Deen Guidance offers live, interactive online Quran and Islamic Studies courses—beginner to advanced—taught by certified teachers. Try a free demo class today!',
+    title: 'Deen Guidance — Online Quran & Islamic Studies',
+    description:
+      'Deen Guidance offers live, interactive online Quran and Islamic Studies courses—beginner to advanced—taught by certified teachers. Try a free demo class today!',
     siteName: 'Deen Guidance',
     images: [
       {
@@ -42,9 +42,9 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@DeenGuidance',
     creator: '@DeenGuidance',
-  title: 'Deen Guidance — Online Quran & Islamic Studies',
-  description:
-    'Deen Guidance offers live, interactive online Quran and Islamic Studies courses—beginner to advanced—taught by certified teachers. Try a free demo class today!',
+    title: 'Deen Guidance — Online Quran & Islamic Studies',
+    description:
+      'Deen Guidance offers live, interactive online Quran and Islamic Studies courses—beginner to advanced—taught by certified teachers. Try a free demo class today!',
     images: ['/images/og-image.png'],
   },
 };
@@ -73,6 +73,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${cinzelDecorative.variable}`}>
       <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5431101563959229"
+          crossorigin="anonymous"></script>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </head>
       <body className={inter.className}>
@@ -103,13 +105,13 @@ export default function RootLayout({
               {/* {isAdminRoute ? (
                 children
               ) : ( */}
-                <>
-                  <Navbar />
-                  <MainLayout>
-                    {children}
-                  </MainLayout>
-                  <Footer />
-                </>
+              <>
+                <Navbar />
+                <MainLayout>
+                  {children}
+                </MainLayout>
+                <Footer />
+              </>
               {/* )} */}
             </Box>
             <Toaster
