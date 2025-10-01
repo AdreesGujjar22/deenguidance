@@ -8,14 +8,11 @@ import toast from 'react-hot-toast';
 import type { ContactFormData, FormProps } from '@/types/forms';
 import MainButton from '../common/MainButton';
 
-const StyledForm = styled('form')(({ theme }) => ({
+const StyledForm = styled('form')(() => ({
   width: '100%',
   maxWidth: '700px',
   margin: '0 auto',
-  padding: theme.spacing(3),
-  [theme.breakpoints.down('sm')]: {
-    padding: theme.spacing(2),
-  },
+  padding: 0,
 }));
 
 const initialFormData: ContactFormData & {
@@ -67,7 +64,7 @@ export default function ContactForm({ onSuccess, onError, className }: FormProps
 
     try {
       const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID_CONTACT;
       const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
       if (!serviceId || !templateId || !publicKey) {
@@ -102,31 +99,43 @@ export default function ContactForm({ onSuccess, onError, className }: FormProps
   };
 
   return (
-    <StyledForm onSubmit={handleSubmit} className={className}>
+    <StyledForm onSubmit={handleSubmit} className={className} aria-label="Contact form">
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           <TextField
             required
             fullWidth
-            label="Name"
+            label="Full Name"
             name="name"
+            autoComplete="name"
             value={formData.name}
             onChange={handleChange}
             variant="outlined"
             disabled={loading}
+            placeholder="Enter your full name"
+            inputProps={{
+              'aria-label': 'Full name',
+              'aria-required': 'true',
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             required
             fullWidth
-            label="Email"
+            label="Email Address"
             name="email"
             type="email"
+            autoComplete="email"
             value={formData.email}
             onChange={handleChange}
             variant="outlined"
             disabled={loading}
+            placeholder="your.email@example.com"
+            inputProps={{
+              'aria-label': 'Email address',
+              'aria-required': 'true',
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -134,6 +143,7 @@ export default function ContactForm({ onSuccess, onError, className }: FormProps
             fullWidth
             label="Phone (Optional)"
             name="phone"
+            autoComplete="tel"
             value={formData.phone}
             onChange={handleChange}
             variant="outlined"
@@ -183,11 +193,15 @@ export default function ContactForm({ onSuccess, onError, className }: FormProps
             fullWidth
             label="Subject"
             name="subject"
+            inputProps={{ 'aria-describedby': 'subject-helper' }}
             value={formData.subject}
             onChange={handleChange}
             variant="outlined"
             disabled={loading}
           />
+          <Box id="subject-helper" component="span" sx={{ display: 'none' }}>
+            Provide a short, descriptive subject
+          </Box>
         </Grid>
         <Grid item xs={12}>
           <TextField
@@ -197,18 +211,31 @@ export default function ContactForm({ onSuccess, onError, className }: FormProps
             rows={4}
             label="Message"
             name="message"
+            inputProps={{ 'aria-describedby': 'message-helper' }}
             value={formData.message}
             onChange={handleChange}
             variant="outlined"
             disabled={loading}
           />
+          <Box id="message-helper" component="span" sx={{ display: 'none' }}>
+            Share details about your request or question
+          </Box>
         </Grid>
         <Grid item xs={12}>
-          <Box display="flex" justifyContent="flex-end">
+          <Box 
+            display="flex" 
+            justifyContent="flex-end"
+            sx={{ mt: 2 }}
+          >
             <MainButton
               content={loading ? 'Sending...' : 'Send Message'}
               disabled={loading}
               type="submit"
+              aria-label={loading ? 'Sending message' : 'Send message'}
+              sx={{
+                minWidth: '160px',
+                py: 1.5,
+              }}
             />
           </Box>
         </Grid>

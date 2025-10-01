@@ -2,26 +2,27 @@
 import React from "react";
 import { Box, Typography, Container } from "@mui/material";
 import Image from "next/image";
-import PersonImage from "../../../public/images/HeroSectionImage.png";
 import MainButton from "../common/MainButton";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 
 const HeroSection: React.FC = () => {
   return (
     <Box
+      component="section"
+      aria-label="Hero section"
       sx={{
-        backgroundColor: "primary.main",
+        background: 'linear-gradient(135deg, #004d40 0%, #00695c 100%)',
         color: "white",
-        minHeight: "100vh",
+        minHeight: { xs: "85vh", md: "92vh" },
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         flexDirection: { xs: "column", md: "row" },
         position: "relative",
         overflow: "hidden",
-        // paddingX: { xs: "20px", sm: "40px" },
-        paddingY: "135px",
-        gap: { xs: "20px", md: "40px" },
+        paddingY: { xs: "100px", md: "100px" },
+        gap: { xs: "30px", md: "50px" },
+        px: { xs: 2, sm: 4, md: 6 },
       }}
     >
       {/* Background Overlay */}
@@ -50,24 +51,23 @@ const HeroSection: React.FC = () => {
           justifyContent: "center",
           alignItems: "center",
           textAlign: "center",
-          maxWidth: { xs: "90%", md: "50%" },
+          maxWidth: { xs: "92%", md: "56%" },
           gap: 3,
         }}
       >
         {/* Headline */}
         <Typography
           variant="h1"
+          component="h1"
+          className="animate-fadeInUp"
           sx={{
-            fontSize: { xs: "28px", sm: "36px", md: "54px" },
+            fontSize: { xs: "32px", sm: "42px", md: "58px" },
             fontWeight: 800,
             fontStyle: "italic",
-            letterSpacing: "2px",
-            lineHeight: 1.2,
-            animation: "slideIn 1.5s ease-out",
-            "@keyframes slideIn": {
-              from: { transform: "translateY(-50px)", opacity: 0 },
-              to: { transform: "translateY(0)", opacity: 1 },
-            },
+            letterSpacing: "1px",
+            lineHeight: 1.15,
+            mb: 2,
+            textShadow: '2px 4px 8px rgba(0,0,0,0.2)',
           }}
         >
           Call upon Allah and trust in His response.
@@ -75,12 +75,15 @@ const HeroSection: React.FC = () => {
 
         {/* Subheadline */}
         <Typography
+          variant="body1"
+          className="animate-fadeIn"
           sx={{
-            fontFamily :"Raleway",
-            fontSize: { xs: "16px", md: "18px" },
+            fontFamily: "var(--font-inter)",
+            fontSize: { xs: "17px", md: "19px" },
             lineHeight: 1.8,
-            color: "lightgrey",
-            maxWidth: "600px",
+            color: "rgba(255, 255, 255, 0.92)",
+            maxWidth: "620px",
+            fontWeight: 400,
           }}
         >
           Our mission is to share the teachings of Islam and its timeless wisdom
@@ -97,30 +100,60 @@ const HeroSection: React.FC = () => {
 
       {/* Image Section */}
       <Box
+        className="animate-scaleIn"
         sx={{
           position: "relative",
-          width: { xs: "90%", sm: "60%", md: "40%" },
-          maxWidth: "400px",
-          border: "6px solid",
-          borderColor: "secondary.main",
-          borderRadius: "50%",
+          width: { xs: "100%", sm: "80%", md: "45%", lg: "40%" },
+          maxWidth: { xs: "400px", md: "500px" },
+          aspectRatio: "1/1", // Maintains square aspect ratio
+          borderRadius: { xs: "24px", md: "32px" },
           overflow: "hidden",
-          boxShadow: "0 0 20px rgba(0, 0, 0, 0.5)",
-          animation: "zoomIn 1.5s ease",
-          "@keyframes zoomIn": {
-            from: { transform: "scale(0.8)", opacity: 0 },
-            to: { transform: "scale(1)", opacity: 1 },
+          boxShadow: "0 20px 50px -10px rgba(0, 0, 0, 0.2), 0 10px 10px -10px rgba(0, 0, 0, 0.1)",
+          transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+          willChange: "transform",
+          '&:hover': {
+            transform: 'scale(1.02)',
+            boxShadow: "0 30px 60px -15px rgba(0, 0, 0, 0.3), 0 15px 15px -15px rgba(0, 0, 0, 0.2)",
           },
+          // Subtle border effect
+          '&::before': {
+            content: '""',
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            border: "1px solid rgba(255, 255, 255, 0.1)",
+            borderRadius: "inherit",
+            zIndex: 1,
+            pointerEvents: "none"
+          }
         }}
       >
-        <Image
-          src={PersonImage}
-          alt="Person reading Quran"
-          layout="responsive"
-          width={300}
-          height={300}
-          style={{ objectFit: "cover" }}
-        />
+        <Box
+          sx={{
+            width: "100%",
+            height: "100%",
+            position: "relative",
+            '&:hover img': {
+              transform: 'scale(1.05)'
+            }
+          }}
+        >
+          <Image
+            src="/images/HeroSectionImage.jpg"
+            alt="Person reading Quran"
+            fill
+            sizes="(max-width: 768px) 90vw, (max-width: 1200px) 35vw, 25vw"
+            style={{
+              objectFit: "cover",
+              transition: "transform 0.5s ease-out",
+              willChange: "transform"
+            }}
+            priority
+            quality={85}
+          />
+        </Box>
       </Box>
     </Box>
   );

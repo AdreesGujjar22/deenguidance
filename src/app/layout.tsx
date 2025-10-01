@@ -3,11 +3,13 @@ import { Box } from '@mui/material';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 import { Inter, Cinzel_Decorative } from 'next/font/google';
 import Script from 'next/script';
+import { Suspense } from 'react';
 import { Toaster } from 'react-hot-toast';
 import ThemeRegistry from '@/components/providers/ThemeRegistry';
 import MainLayout from '@/components/layout/MainLayout';
 import Navbar from '@/components/common/NavBar';
 import Footer from '@/components/common/Footer';
+import Loading from '@/components/common/Loading';
 import { APP_CONFIG } from '@/data/constants';
 import '@/styles/global.css';
 // import { usePathname } from 'next/navigation';
@@ -74,10 +76,11 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${cinzelDecorative.variable}`}>
       <head>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5431101563959229"
-          crossorigin="anonymous"></script>
+          crossOrigin="anonymous"></script>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </head>
       <body className={inter.className}>
+        <a href="#main-content" className="skip-to-content-link">Skip to content</a>
         {/* Google Analytics Script */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${APP_CONFIG.googleAnalyticsId}`}
@@ -101,18 +104,13 @@ export default function RootLayout({
                 minHeight: '100vh',
               }}
             >
-              {/* Render Navbar, MainLayout, and Footer only for non-admin routes */}
-              {/* {isAdminRoute ? (
-                children
-              ) : ( */}
-              <>
-                <Navbar />
-                <MainLayout>
-                  {children}
-                </MainLayout>
-                <Footer />
-              </>
-              {/* )} */}
+                <Suspense fallback={<Loading />}>
+                  <Navbar />
+                  <MainLayout>
+                    {children}
+                  </MainLayout>
+                  <Footer />
+                </Suspense>
             </Box>
             <Toaster
               position="top-center"

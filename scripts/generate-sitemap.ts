@@ -2,6 +2,7 @@
 import { writeFileSync, mkdirSync, existsSync } from 'fs';
 import { resolve } from 'path';
 import blogs from '../src/data/blogs/BlogData';
+import courses from '../src/data/Course';
 
 const SITE_URL = process.env.SITE_URL || 'https://deenguidance.com';
 const PUBLIC_PATH = resolve(__dirname, '../public');
@@ -23,7 +24,13 @@ const blogUrls = blogs.map(({ slug }) => ({
   priority: 0.7,
 }));
 
-const urls = [...staticUrls, ...blogUrls];
+const courseUrls = courses.map(({ id }) => ({
+  loc: `${SITE_URL}/courses/${id}`,
+  lastmod: new Date().toISOString(),
+  priority: 0.8, // Slightly higher priority than blogs
+}));
+
+const urls = [...staticUrls, ...blogUrls, ...courseUrls];
 
 // 3. Build the XML
 const xml = `<?xml version="1.0" encoding="UTF-8"?>\n` +

@@ -21,9 +21,9 @@ const SubscribeComponent: React.FC = () => {
     }
 
     setLoading(true);
-    try {
+    try { 
       const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_NEWSLETTER_TEMPLATE_ID;
       const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
       if (!serviceId || !templateId || !publicKey) {
@@ -34,13 +34,17 @@ const SubscribeComponent: React.FC = () => {
         serviceId,
         templateId,
         {
-          subscriber_email: email,
-          subscription_date: new Date().toLocaleDateString(),
+          to_email: 'your-newsletter@deenguidance.com',
+          from_name: 'DeenGuidance Newsletter',
+          message: `New newsletter subscription from: ${email}`,
+          reply_to: email,
+          subject: 'New Newsletter Subscription',
+          subscription_date: new Date().toLocaleDateString()
         },
         publicKey
       );
 
-      toast.success('Successfully subscribed to newsletter!');
+      toast.success('Successfully subscribed to our newsletter! Thank you!');
       setEmail('');
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Failed to subscribe';

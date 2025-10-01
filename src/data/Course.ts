@@ -3,8 +3,8 @@ import { CourseCardProps } from "../types/Course";
 const courseData: CourseCardProps[] = [
   {
     id: "aqidah-foundations",
-    image: "/images/course/course1.png",
-    tutorName: "Dr. Aisha Al-Mansur",
+    image: "/images/course/course4.jpg",
+    tutorName: "Aisha",
     tutorRole: "Islamic Theologian",
     courseTitle: "Aqīdah",
     price: "$0.00",
@@ -14,8 +14,8 @@ const courseData: CourseCardProps[] = [
   },
   {
     id: "principles-of-tafsir",
-    image: "/images/course/course2.png",
-    tutorName: "Sheikh Omar Al-Zahrawi",
+    image: "/images/course/course4.jpg",
+    tutorName: "Omar",
     tutorRole: "Tafsīr Specialist",
     courseTitle: "Tafsīr",
     price: "$25.00",
@@ -25,8 +25,8 @@ const courseData: CourseCardProps[] = [
   },
   {
     id: "hadith-sciences-intro",
-    image:"/images/course/course3.jpg",
-    tutorName: "Ustadh Hassan bin Yusuf",
+    image:"/images/course/course4.jpg",
+    tutorName: "Hassan",
     tutorRole: "Ḥadīth Scholar",
     courseTitle: "Ḥadīth Sciences",
     price: "$30.00",
@@ -37,7 +37,7 @@ const courseData: CourseCardProps[] = [
   {
     id: "seerah-prophet",
     image:"/images/course/course4.jpg",
-    tutorName: "Imam Khalid Al-Hadi",
+    tutorName: "Khalid",
     tutorRole: "Seerah Lecturer",
     courseTitle: "Seerah Prophet ﷺ",
     price: "$0.00",
@@ -47,8 +47,8 @@ const courseData: CourseCardProps[] = [
   },
   {
     id: "arabic-for-quran",
-    image: "/images/course/course1.png",
-    tutorName: "Dr. Fatima Al-Qadhi",
+    image: "/images/course/course4.jpg",
+    tutorName: "Fatima",
     tutorRole: "Arabic Linguist",
     courseTitle: "Qur’ānic Recitation",
     price: "$20.00",
@@ -58,8 +58,8 @@ const courseData: CourseCardProps[] = [
   },
   {
     id: "usul-al-fiqh",
-    image: "/images/course/course2.png",
-    tutorName: "Sheikh Salim Al-Bukhari",
+    image: "/images/course/course4.jpg",
+    tutorName: "Salim",
     tutorRole: "Fiqh Expert",
     courseTitle: "Jurisprudence",
     price: "$35.00",

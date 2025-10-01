@@ -81,11 +81,17 @@ function NavBar() {
 
   return (
     <AppBar
-      position="fixed"
+      position="sticky"
+      color="primary"
+      enableColorOnDark
+      component="nav"
+      role="navigation"
+      aria-label="Main navigation"
       sx={{
-        boxShadow: "none",
-        // backgroundColor: scrolling ? "#004B39" : "transparent",
-        fontFamily: "Raleway",
+        boxShadow: "0 2px 16px rgba(0,0,0,0.1)",
+        backgroundColor: 'primary.main',
+        backdropFilter: 'blur(10px)',
+        transition: 'all 0.3s ease-in-out',
       }}
     >
       <Container
@@ -97,7 +103,11 @@ function NavBar() {
       >
         <Toolbar
           disableGutters
-          sx={{ justifyContent: { xs: "start", md: "space-between" } }}
+          sx={{ 
+            justifyContent: { xs: "start", md: "space-between" }, 
+            minHeight: { xs: 64, sm: 72 },
+            py: 1,
+          }}
         >
           {/* Items for desktop */}
           <Box
@@ -154,13 +164,37 @@ function NavBar() {
                   >
                     <Button
                       sx={{
-                        color: "white",
+                        color: "primary.contrastText",
                         display: "block",
                         mx: 2,
                         fontSize: "15px",
                         textTransform: "none",
-                        fontFamily: "Raleway",
+                        fontFamily: "var(--font-inter)",
+                        fontWeight: 600,
+                        position: 'relative',
+                        '&:hover': {
+                          backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                        },
+                        '&::after': {
+                          content: '""',
+                          position: 'absolute',
+                          bottom: 0,
+                          left: '50%',
+                          transform: 'translateX(-50%)',
+                          width: 0,
+                          height: '2px',
+                          backgroundColor: 'secondary.main',
+                          transition: 'width 0.3s ease-in-out',
+                        },
+                        '&:hover::after': {
+                          width: '80%',
+                        },
+                        '&:focus-visible': { 
+                          outline: '3px solid #DB9E30', 
+                          outlineOffset: 2,
+                        },
                       }}
+                      aria-label={`Navigate to ${page.name}`}
                     >
                       {page.name}
                     </Button>
@@ -179,7 +213,7 @@ function NavBar() {
             />
             <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose} sx={{ mt: 1 }}>
               <MenuItem>
-                <ReactFlagsSelect selected={selectedCountry} onSelect={handleCountryChange} searchable />
+                <ReactFlagsSelect selected={selectedCountry} onSelect={handleCountryChange} searchable aria-label="Choose country for prayer times" />
               </MenuItem>
               <MenuItem disabled>
                 <Typography variant="subtitle2" sx={{ fontWeight: "bold", textAlign: "center", width: "100%" }}>
@@ -224,16 +258,20 @@ function NavBar() {
               anchor="left"
               open={drawerOpen}
               onClose={() => setDrawerOpen(false)}
+              role="dialog"
+              aria-label="Mobile navigation menu"
               sx={{
                 zIndex: 1300,
                 "& .MuiDrawer-paper": {
-                  width: "70vw",
+                  width: { xs: "80vw", sm: "70vw" },
+                  maxWidth: "400px",
                   backgroundColor: "primary.main",
                   color: "white",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
-                  padding: 2,
+                  padding: 3,
+                  boxShadow: "0 8px 32px rgba(0,0,0,0.2)",
                 },
               }}
             >

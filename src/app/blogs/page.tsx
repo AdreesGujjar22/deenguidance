@@ -1,10 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Box, Container, Typography, Pagination, CircularProgress } from "@mui/material";
+import { Box, Container, Typography, Pagination } from "@mui/material";
 import BlogCard from "@/components/blogs/BlogCard";
 import { useRouter } from "next/navigation";
 import { BlogItem } from "../../types/Blog";
 import HeroBanner from "@/components/common/HeroBanner";
+import Loading from "@/components/common/Loading";
 
 const Blogs: React.FC = () => {
   const router = useRouter();
@@ -47,17 +48,30 @@ const Blogs: React.FC = () => {
 
   if (loading) {
     return (
-      <Box sx={{ display: "flex", justifyContent: "center", mt: 15 }}>
-        <CircularProgress />
-      </Box>
+      <Loading />
     );
   }
 
   if (error) {
     return (
-      <Typography variant="h6" color="error" align="center" sx={{ mt: 15 }}>
-        {error}
-      </Typography>
+      <Box 
+        sx={{ 
+          display: "flex", 
+          flexDirection: "column",
+          justifyContent: "center", 
+          alignItems: "center",
+          minHeight: "60vh",
+          gap: 2,
+          px: 2,
+        }}
+      >
+        <Typography variant="h5" color="error" align="center" gutterBottom>
+          Oops! Something went wrong
+        </Typography>
+        <Typography variant="body1" color="text.secondary" align="center">
+          {error}
+        </Typography>
+      </Box>
     );
   }
 
@@ -65,43 +79,105 @@ const Blogs: React.FC = () => {
   if (!loading && blogs.length === 0) {
     return (
       <Container maxWidth="lg">
-        <Typography variant="h5" align="center" sx={{ mt: 15 }}>
-          No blogs found.
-        </Typography>
+        <Box 
+          sx={{ 
+            display: "flex", 
+            flexDirection: "column",
+            justifyContent: "center", 
+            alignItems: "center",
+            minHeight: "60vh",
+            gap: 2,
+          }}
+        >
+          <Typography variant="h4" align="center" color="text.primary" gutterBottom>
+            No blogs available yet
+          </Typography>
+          <Typography variant="body1" color="text.secondary" align="center">
+            Check back soon for new content!
+          </Typography>
+        </Box>
       </Container>
     );
   }
 
   return (
-      <Box>
-        <HeroBanner title="Explore our latest insights" bgImage="/images/blogs/bg-blog.jpg" />
-        <Container maxWidth="lg">
+      <Box sx={{ backgroundColor: '#fafafa', minHeight: '100vh' }}>
+        <HeroBanner title="Explore Our Latest Insights" bgImage="/images/blogs/bg-blog.jpg" />
+        <Container maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }}>
           {/* Responsive Grid for Blog Cards */}
           <Box
             sx={{
               display: "grid",
-              gap: 3,
+              gap: 4,
               gridTemplateColumns: {
                 xs: "1fr",
-                sm: "1fr 1fr",
-                md: "1fr 1fr",
-                lg: "1fr 1fr 1fr",
+                sm: "repeat(2, 1fr)",
+                lg: "repeat(3, 1fr)",
               },
-              justifyItems: "center",
-              pt: 15, backgroundColor: "#f9f9f9",
+              mb: 6,
             }}
           >
-            {paginatedData.map((blog) => (
-              <Box key={blog._id} onClick={() => handleCard(blog.slug)} sx={{ width: "100%" }}>
-                <BlogCard _id={blog._id} title={blog.title} description={blog.description} image={blog.image} slug={blog.slug} content={blog.content} />
+            {paginatedData.map((blog, index) => (
+              <Box 
+                key={blog._id} 
+                onClick={() => handleCard(blog.slug)} 
+                sx={{ 
+                  cursor: 'pointer',
+                  height: '100%',
+                  animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`,
+                  '@keyframes fadeInUp': {
+                    from: {
+                      opacity: 0,
+                      transform: 'translateY(30px)',
+                    },
+                    to: {
+                      opacity: 1,
+                      transform: 'translateY(0)',
+                    },
+                  },
+                }}
+                role="article"
+                aria-label={`Read blog: ${blog.title}`}
+              >
+                <BlogCard 
+                  _id={blog._id} 
+                  title={blog.title} 
+                  description={blog.description} 
+                  image={blog.image} 
+                  slug={blog.slug} 
+                  content={blog.content} 
+                />
               </Box>
             ))}
           </Box>
+          
+          {/* Pagination Component */}
+          {totalPages > 1 && (
+            <Box 
+              sx={{ 
+                display: "flex", 
+                justifyContent: "center", 
+                mt: 4,
+                pb: 4,
+              }}
+            >
+              <Pagination 
+                count={totalPages} 
+                page={page} 
+                onChange={handleChange} 
+                color="primary"
+                size="large"
+                showFirstButton
+                showLastButton
+                sx={{
+                  '& .MuiPaginationItem-root': {
+                    fontWeight: 600,
+                  },
+                }}
+              />
+            </Box>
+          )}
         </Container>
-        {/* Pagination Component */}
-        <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
-          <Pagination count={totalPages} page={page} onChange={handleChange} color="primary" />
-        </Box>
       </Box>
   );
 };

@@ -121,22 +121,22 @@ const BlogComponent = () => {
         <HeroBanner title={content?.title} bgImage={content?.image} />
 
         {/* Blog Content */}
-        <Container maxWidth="lg" sx={{ py: 8 }}>
+        <Container maxWidth="md" sx={{ py: { xs: 4, md: 8 } }}>
           <Card
             sx={{
               // borderRadius: 2,
-              boxShadow: "none",
+              boxShadow: "0 6px 24px rgba(0,0,0,0.06)",
               borderBottom: "2px solid #004d40",
               backgroundColor: "transparent",
-              px: 1,
-              mb: 4,
+              px: { xs: 1, md: 2 },
+              mb: { xs: 3, md: 4 },
             }}
           >
-            <CardContent sx={{ px: 2 }}>
+            <CardContent sx={{ px: { xs: 2, md: 3 } }}>
               <Typography
                 variant="h2"
                 sx={{
-                  fontSize: { xs: "1.8rem", md: "2.5rem" },
+                  fontSize: { xs: "1.75rem", md: "2.25rem" },
                   fontWeight: 600,
                   color: "#2D2D2D",
                   mb: 4,
@@ -146,9 +146,9 @@ const BlogComponent = () => {
               </Typography>
               <Box
                 sx={{
-                  fontSize: "1.1rem",
-                  lineHeight: 1.8,
-                  color: "#444",
+                  fontSize: { xs: "1rem", md: "1.0625rem" },
+                  lineHeight: 1.9,
+                  color: "text.primary",
                 }}
                 dangerouslySetInnerHTML={{ __html: content.content }}
               />
